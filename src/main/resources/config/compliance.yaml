@@ -1,0 +1,523 @@
+# Compliance
+---
+# General
+- name: First Name
+  required: true
+  type: string
+  accept:
+    - First
+    - Fname
+    - First Name
+    - 1st Name
+    - F Name
+    - FirstName
+    - Name 1
+    - Name1
+    - AnnuitantFirstName
+    - First_Name
+    - FirstNameMiddleInitial
+    - Name_First
+    - PTDFirst
+- name: Initial
+  required: false
+  type: string
+  accept:
+    - Initial
+    - Init
+    - Middle
+- name: Last Name
+  required: true
+  type: string
+  accept:
+    - Last
+    - Lname
+    - Last Name
+    - 2nd Name
+    - L Name
+    - LastName
+    - 2 Name
+    - Name 2
+    - Name2
+    - L Name
+    - LastName
+    - PTDLast
+    - Last_Name
+    - AnnuitantLastName
+    - Name_Last
+- name: Social Security Number
+  required: true
+  type: string
+  accept:
+    - SSN
+    - Social
+    - Security
+    - SocialSecurity
+    - 'SocialSecurity#'
+    - SocialSecurityNum
+    - SocialSecurityNumber
+    - 'SSN#'
+    - 'SS#'
+    - SSN/FEIN
+
+# Key Terms
+- name: Status
+  required: true
+  type: string
+  accept:
+    - Status*
+    - ContractStatus
+    - PolicyStatus
+    - EmployeeStatus
+    - EmployeeStatusType
+    - Employee Status
+  keyTerms:
+    - name: Active
+      values: 
+        - Active
+        - Act
+        - A*
+    - name: Eligible
+      values: 
+        - Eligible*
+        - Elig*
+        - E*
+    - name: Not eligible
+      values: 
+        - Not eligible
+        - N*
+    - name: Suspended
+      values: 
+        - Suspended
+        - S*
+    - name: Terminated
+      values: 
+        - Terminated
+        - T*
+    - name: Disabled
+      values: 
+        - Disabled
+    - name: Retired
+      values: 
+        - Retired
+        - R*
+    - name: Deceased
+      values: 
+        - Deceased
+    - name: Inactive
+      values: 
+        - Inactive
+        - I*
+    - name: Beneficiary
+      values: 
+        - Beneficiary
+        - Bene
+        - B*
+    - name: QDRO
+      values: 
+        - QDRO
+        - Q*
+    - name: Pend Eligible
+      values: 
+        - Pend Eligible
+        - Pending Eligible
+        - P*
+- name: Employee Types
+  required: false
+  type: string
+  accept:
+    - Employee Types
+    - Employee Type
+    - EmployeeType
+    - EmployeeTypes
+    - Employee-Type
+    - Employee - Type
+    - Employee- Type
+    - Employee-Types
+    - Employee - Types
+    - Employee- Types
+    - EE-Type
+    - EE-Types
+  keyTerms:
+    - name: Union employee (aka Collectively Bargained)
+      values: 
+        - Union employee
+        - Collectively Bargained
+    - name: Non-resident alien
+      values: 
+        - Non-resident
+        - Alien
+    - name: Contractor (aka leased employee)
+      values: 
+        - Contractor
+        - Leased
+    - name: Hourly
+      values: 
+        - Hourly
+    - name: Salaried employee
+      values: 
+        - Salaried
+        - Annual
+        - Salary
+    - name: Commissioned employee
+      values: 
+        - Commissioned
+        - Periodic
+    - name: HCE
+      values: 
+        - HCE
+        - Highly Compensated Employee
+    - name: Key employee
+      values: 
+        - Key
+        - Critical
+    - name: Non-key employee
+      values: 
+        - Non-key
+- name: Employee Class
+  required: false
+  type: string
+  accept:
+    - Employee Class
+    - EmployeeClass
+    - Employee-Class
+    - Employee - Class
+    - EE Class
+    - EEClass
+  keyTerms:
+    - name: Part-time employee
+      values: 
+        - Part
+        - Part-time
+    - name: Full-time employee
+      values: 
+        - Full
+        - Full-time
+    - name: Officer
+      values: 
+        - Officer
+
+# Census applicable fields
+- name: Birth Date
+  required: true
+  type: date
+  accept:
+    - Birth
+    - DOB
+    - D.O.B
+    - D.O.B.
+    - DateOfBirth
+    - DateBirth
+    - BirthDate
+    - BirthDt
+- name: Gender
+  required: N
+  type: string
+  accept:
+    - Gender
+    - Sex
+- name: Address 1
+  required: true
+  type: string
+  accept:
+    - Address 1
+    - Address1
+    - Address Line 1
+    - Address Ln 1
+    - AddressLine1
+    - AddressLn1
+    - Add 1
+    - Add. 1
+    - Street Address 1
+    - StreetAddress1
+    - Street Address
+    - StreetAddress
+    - Street Line 1
+    - StreetLine1
+- name: Address 2
+  required: false
+  type: string
+  accept:
+    - Address 2
+    - Address2
+    - Address Line 2
+    - Address Ln 2
+    - AddressLine2
+    - AddressLn2
+    - Add 2
+    - Add. 2
+    - Street Address 2
+    - StreetAddress2
+    - Street Line 2
+    - StreetLine2
+- name: City
+  required: true
+  type: string
+  accept:
+    - City
+    - Town
+    - CityOrTown
+- name: State
+  required: true
+  type: string
+  accept:
+    - State
+    - St
+    - StateCode
+    - StateCd
+    - StCode
+    - StCd
+- name: ZIP
+  required: true
+  type: string
+  accept:
+    - Zip
+    - Zp
+    - Zipcode
+    - Zip-code
+- name: Telephone
+  required: false
+  type: string
+  accept:
+    - Telephone
+    - Tele-phone
+    - Phone
+    - Cell
+    - TelephoneNumber
+    - TelephoneNum
+    - PhoneNumber
+    - PhoneNum
+    - Tele Phone
+- name: Email
+  required: false
+  type: string
+  accept:
+    - Email
+    - Mail
+    - EmailAddress
+    - EmailAdd
+    - WorkEmail
+- name: Employee ID
+  required: false
+  type: string
+  accept:
+    - Employee ID
+    - EmployeeID
+    - Emp ID
+    - EmpID
+- name: Eligibility Start Date
+  required: false
+  type: date
+  accept:
+    - Eligibility
+    - Start Date
+    - Eligible
+    - EligibleStartDate
+    - EligibleStDt
+    - EligibilityStDate
+    - EligibilityStartDate
+- name: Rehire Date
+  required: false
+  type: date
+  accept:
+    - Rehire
+    - RehireDate
+    - RehireDt
+- name: Status Change Date
+  required: false
+  type: date
+  accept:
+    - Status Change
+    - StatusChange
+    - StatusChangeDate
+    - StatusChangeDt
+- name: Hardship Suspension Date
+  required: false
+  type: date
+  accept:
+    - Hardship
+    - Suspension
+- name: Termination Date
+  required: false
+  type: date
+  accept:
+    - Termination Date
+    - TerminationDate
+    - Term Date
+    - TermDate
+    - Termination Dt
+    - TerminationDt
+    - Term Dt
+    - TermDt
+    - Term-Date
+    - Term-Dt
+- name: Hire Date
+  required: true
+  type: date
+  accept:
+    - Hire Date
+    - Hire Dt
+    - HireDate
+    - HireDt
+    - Date of Hire
+    - DateOfHire
+    - Dt of Hire
+    - DtOfHire
+- name: Plan Entry Date
+  required: false
+  type: date
+  accept:
+    - Plan Entry Date
+    - PlanEntryDate
+    - Plan Entry Dt
+    - PlanEntryDt
+    - Entry Date
+    - EntryDate
+    - Entry Dt
+    - EntryDt
+- name: 1-Year of Service
+  required: false
+  type: string
+  accept:
+    - 1-Year of Service
+    - One Year
+    - 1 Year
+    - Year of Service
+- name: Attribution/Family Relationship
+  required: false
+  type: string
+  accept:
+    - Relationship
+    - Relation
+- name: Attribution/Family SSN
+  required: false
+  type: string
+  accept:
+    - Family SSN
+    - Family Social
+    - Family Soc
+    - Fml SSN
+    - Fml Social
+    - Fml Soc
+- name: Group Code
+  required: false
+  type: string
+  accept:
+    - Group
+    - G Code
+    - Gr Code
+    - Gr Cd
+- name: Elective Deferral From Prior Recordkeeper For Current Plan Year
+  required: false
+  type: string
+  accept:
+    - Elective
+    - Deferral
+    - Elect
+    - Defer
+- name: Limit Year Compensation
+  required: false
+  type: string
+  accept:
+    - Limit
+    - Lmt
+- name: Plan Year Compensation
+  required: false
+  type: string
+  accept:
+    - Plan Year Compensation
+    - P Year Compensation
+    - Pl Year Compensation
+    - Pl Year Comp
+    - Pl Yr Comp
+    - Plan Yr Comp
+    - Compensation*
+    - Comp*
+- name: Section 125 Year Compensation
+  required: false
+  type: string
+  accept:
+    - Section
+    - 125
+- name: Overtime
+  required: false
+  type: string
+  accept:
+    - Overtime
+    - Over Time
+    - Over-Time
+- name: Bonus
+  required: false
+  type: string
+  accept:
+    - Bonus
+    - Bns
+- name: Commissions
+  required: false
+  type: string
+  accept:
+    - Commissions
+    - Commission
+    - Comm
+- name: Other Compensation
+  required: false
+  type: string
+  accept:
+    - Other Compensation
+    - Other Comp
+- name: Other Qualified Plan Contribution
+  required: false
+  type: string
+  accept:
+    - Other Qualified
+    - Other Qualif
+    - Oth Qualified
+    - Oth Qualif
+- name: Owner Exact % - Current Year
+  required: false
+  type: string
+  accept:
+    - Owner Current
+    - Exact Current
+    - Current Year
+    - Crt Year
+- name: Owner Exact % - Previous Year
+  required: false
+  type: string
+  accept:
+    - Owner Previous
+    - Exact Previous
+    - Previous Year
+    - Previous Yr
+- name: Plan YTD Hours
+  required: false
+  type: string
+  accept:
+    - YTD
+    - Hours
+    - Year To Date
+    - YearToDate
+    - Year To Dt
+    - YearToDt
+    - PlanYTDHours
+    - YTDHours
+    - YTDHrs
+    - PlanYTDHrs
+- name: Payroll Date
+  required: false
+  type: date
+  accept:
+    - Payroll Date
+    - Payroll Dt
+- name: Previous Hire Date
+  required: false
+  type: date
+  accept:
+    - Previous Hire Date
+    - Prev Hire Date
+    - Previous Hire Dt
+- name: Country
+  required: false
+  type: string
+  accept:
+    - Country
+    - Ctry

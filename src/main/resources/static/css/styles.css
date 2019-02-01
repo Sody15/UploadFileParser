@@ -1,0 +1,135 @@
+body {
+    padding: 20px 100px;
+    background-color: #e8e8e8;
+}
+
+input {
+    height:auto!important;
+}
+
+.btn {
+    display: inline-block;
+    -moz-user-select: none;
+    background-color: #0060D6 !important;
+    border: 2px solid #0060D6 !important;
+    border-radius: 4px !important;
+    color: #FFFFFF !important;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "franklin-gothic-urw-n5", "franklin-gothic-urw", arial, sans-serif !important;
+    font-weight: 500;
+    padding: 6px 15px;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+    height: 35px;
+    line-height: 1.4em;
+    text-transform: none !important;
+    margin:0;
+}
+
+input {
+    border: 1px solid #d7d7d7;
+    color: #000000;
+    background: #ffffff;
+    margin: 0 0 0.4em;
+    padding: .4em 0;
+    border-radius: 3px 3px 3px 3px;
+    height:30px;
+}
+
+h1 {
+	color:#08317C;
+}
+
+#header-table thead, #file-upload-data-table_wrapper thead, #file-upload-error-table thead {
+    background-color: 103184;
+    color: white;
+}   
+
+#upload-form {
+	background-color: white;
+	padding:20px 45px 40px 45px;
+}
+#file-results-form {
+	background-color: white;
+	padding:45px;
+}
+
+#file-name {
+    display: block;
+}
+
+label {
+    font-size: 18px;
+    font-weight: 200;
+    margin-right: 20px;
+}
+
+legend {
+    padding-top: 20px;
+}
+
+
+/************* Spinner **************/
+
+#loader {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+}
+
+#loader-icon {
+    width: 130px;
+    height: 130px;
+    border: 15px solid;
+    border-color: #E5E8E8 #82E0AA #E5E8E8 #3498DB;
+    margin: auto;
+    color: white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    top: 200px;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+/********  End of Spinner  **********/
+
+#fileDataTable_wrapper {
+    margin-top: 20px;
+}
+
+.file-error-row-num {
+    cursor: pointer;
+    color: blue;
+}
+
+/*** Modal Window ***/
+.modal-backdrop {
+    opacity:0.5 !important;
+}
+.modal-title {
+    font-size: 22px;
+    display: inline-block;
+}
+.modal-body p {
+    font-size: 16px;
+}

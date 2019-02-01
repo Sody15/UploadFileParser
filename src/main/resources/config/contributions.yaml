@@ -1,0 +1,603 @@
+# Contributions
+---
+- name: First Name
+  required: true
+  type: string
+  accept:
+    - First
+    - Fname
+    - First Name
+    - 1st Name
+    - F Name
+    - FirstName
+    - Name 1
+    - Name1
+    - AnnuitantFirstName
+    - First_Name
+    - FirstNameMiddleInitial
+    - Name_First
+    - PTDFirst
+- name: Last Name
+  required: true
+  type: string
+  accept:
+    - Last
+    - Lname
+    - Last Name
+    - 2nd Name
+    - L Name
+    - LastName
+    - 2 Name
+    - Name 2
+    - Name2
+    - L Name
+    - LastName
+    - PTDLast
+    - Last_Name
+    - AnnuitantLastName
+    - Name_Last
+- name: Social Security Number
+  required: true
+  type: string
+  accept:
+    - SSN
+    - Social
+    - Security
+    - EmployeeSSN
+    - S.S.
+    - S.S.N.
+    - ParticSSN
+    - SocialSecurity
+    - SocialSecurity#
+    - SocialSecurityNumber
+    - SocSec
+    - SocSec#
+    - SS
+    - SS#
+    - SS_Num
+    - SSN#
+    - SSN/FEIN
+    - SSNNumber
+    - TaxId(SSN)
+    - Tax Id(SSN)
+- name: Contract Number
+  required: false
+  type: string
+  accept:
+    - Contract
+    - 'Contract#'
+    - ContractNum
+    - ContractNumber
+    - Policy
+    - 'Pol #'
+    - 'Cont #'
+    - Cert
+    - CertNumber
+    - Certificate
+    - AxaContractNumber
+    - Empl Id
+    - EmplId
+    - Employee Id
+    - EmployeeId
+    - EmpId
+    - Emp Id
+- name: Loan
+  required: false
+  type: currency
+  accept:
+    - Loan 1
+    - Loan1
+    - Loan Repayment
+    - LoanRepayment
+    - Loan*
+    - Loan Payment*
+    - Loan Amount
+    - LoanAmount*
+    - Loan Amt*
+    - LoanAmt*
+# Sources
+- name: 401H Pick Up
+  sourceIds: 
+    - "-"
+  sourceGroup: Employer
+  required: false
+  type: currency
+  accept:
+    - 401H
+    - Pick
+    - Pick-Up
+    - PickUp
+    - 401HPickUp
+- name: Contributory
+  sourceIds: 
+    - "7"
+  sourceGroup: Employee
+  required: false
+  type: currency
+  accept:
+    - Contributory
+- name: Conversion
+  sourceIds: 
+    - "9"
+  sourceGroup: Employee
+  required: false
+  type: currency
+  accept:
+    - Conversion
+- name: EDC Rollover
+  sourceIds: 
+    - "T"
+  sourceGroup: Employee
+  required: false
+  type: currency
+  accept:
+    - EDC
+    - EDCRollover
+- name: Employee
+  sourceIds: 
+    - "S"
+  sourceGroup: Employee
+  required: false
+  type: currency
+  accept:
+    - Employee*
+    - EE*
+    - Employee Amount*
+    - Employee Contribution*
+    - EmployeeContribution*
+    - EEContribution*
+    - EE Contribution*
+- name: Employee Post Tax
+  sourceIds:
+    - "K"
+  sourceGroup: Employee
+  required: false
+  type: currency
+  accept:
+    - Employee Post Tax
+    - EmployeePostTax
+    - Emp Post Tax
+    - EmpPostTax
+    - EE Post Tax
+    - EEPostTax
+- name: Employee Salary Deferrals Post Tax
+  sourceIds: 
+    - "I"
+  sourceGroup: Employee
+  required: false
+  type: currency
+  accept:
+    - Deferrals Post-Tax
+    - Deferrals Post Tax
+    - Deferral Post Tax
+    - Deferral Post-Tax
+    - DeferralPost-Tax
+    - DeferralPostTax
+    - DeferralsPostTax
+    - DeferralsPost-Tax
+- name: Employee Salary Deferrals Pre Tax
+  sourceIds: 
+    - "O"
+    - "E"
+  sourceGroup: Employee
+  required: false
+  type: currency
+  accept:
+    - Employee Salary Deferrals Pre-Tax
+    - Employee Salary Deferrals Pre Tax
+    - Employee Salary Deferral Pre Tax
+    - Employee Salary Deferral Pre-Tax
+    - Employee Salary Def Pre-Tax
+    - Employee Salary Def Pre Tax
+    - EmployeeSalaryDeferralPre-Tax
+    - EmployeeSalaryDeferralPreTax
+    - EmployeeSalaryDeferralsPreTax
+    - EmployeeSalaryDeferralsPre-Tax
+    - Employee Salary Deferred Compensation
+    - EmployeeSalaryDeferredCompensation
+- name: Employer
+  sourceIds: 
+    - "V"
+    - "P"
+    - "F"
+  sourceGroup: Employer
+  required: false
+  type: currency
+  accept:
+    - Employer*
+    - ER*
+    - Employer Contribution*
+    - EmployerContribution*
+    - Employer Contributions*
+    - EmployerContributions*
+    - ERContribution*
+    - ER Contribution*
+    - Employer Amount*
+    - EmployerAmount*
+    - ERAmount*
+    - ER Amount*
+    - EmployerCont*
+    - Employer Cont*
+    - Source-Employer*
+    - Source - Employer*
+    - Source - ER*
+    - Source-ER*
+- name: Employer (Profit Sharing or Money Purchase)
+  sourceIds: 
+    - "1"
+  sourceGroup: Employer
+  required: false
+  type: currency
+  accept:
+    - Profit Sharing or Money Purchase
+    - Employer(ProfitSharingOrMoneyPurchase)
+- name: Employer Discretionary Contributions
+  sourceIds: 
+    - "L"
+  sourceGroup: Employer
+  required: false
+  type: currency
+  accept:
+    - Employer Discretionary
+    - ER Discretionary
+    - EmployerDiscretionaryContributions
+- name: Employer Match Different Restrictions
+  sourceIds: 
+    - "&"
+  sourceGroup: Employer
+  required: false
+  type: currency
+  accept:
+    - Employer Match Different Restrictions
+    - ER Match Different Restrictions
+- name: Employer Matching Contributions
+  sourceIds: 
+    - "J"
+  sourceGroup: Employer
+  required: false
+  type: currency
+  accept:
+    - Employer Matching Contributions
+    - Employer Matching Contribs
+    - ER Matching Contributions
+    - EmployerMatchingContributions
+    - EmployerMatchingContribs
+- name: Employer Profit Share Different Restrictions
+  sourceIds: 
+    - ";"
+  sourceGroup: Employer
+  required: false
+  type: currency
+  accept:
+    - Profit Share Different Restrictions
+- name: Employer Restricted
+  sourceIds: 
+    - "W"
+  sourceGroup: Employer
+  required: false
+  type: currency
+  accept:
+    - Employer Restricted
+    - ER Restricted
+- name: IRA Rollover Contributions
+  sourceIds: 
+    - "M"
+  sourceGroup: Employee
+  required: false
+  type: currency
+  accept:
+    - IRA
+    - IRA Rollover
+- name: Mandatory After Tax
+  sourceIds:
+    - "?"
+  sourceGroup: Employer
+  required: false
+  type: currency
+  accept:
+    - Mandatory
+    - After Tax
+- name: Matching
+  sourceIds: 
+    - "D"
+  sourceGroup: Employer
+  required: false
+  type: currency
+  accept:
+    - Matching*
+- name: Matching Contributions - 403(b)(7) Money Restricted
+  sourceIds: 
+    - "5"
+  sourceGroup: Employer
+  required: false
+  type: currency
+  accept:
+    - Money Restricted
+    - 403(b)(7) Restricted  
+    - 403b7 Restricted
+- name: Matching Contributions - 403(b)(7) Money Unrestricted
+  sourceIds: 
+    - "4"
+  sourceGroup: Employer
+  required: false
+  type: currency
+  accept:
+    - Money Unrestricted
+    - 403(b)(7) Unrestricted  
+    - 403b7 Unrestricted
+    - MatchingContributions-403(b)(7)MoneyUnrestricted
+- name: Matching Contributions Restricted
+  sourceIds: 
+    - "B"
+  sourceGroup: Employer
+  required: false
+  type: currency
+  accept:
+    - Contributions Restricted
+    - Contribs Restricted
+    - Contrib Restricted
+- name: Money Purchase
+  sourceIds: 
+    - "+"
+  sourceGroup: Employer
+  required: false
+  type: currency
+  accept:
+    - Money Purchase*
+- name: Non-Matching Discretionary Contributions Restricted
+  sourceIds: 
+    - "Y"
+  sourceGroup: Employer
+  required: false
+  type: currency
+  accept:
+    - Non-Matching
+    - Non Matching
+- name: Post-Tefra
+  sourceIds: 
+    - "3"
+  sourceGroup: Employee
+  required: false
+  type: currency
+  accept:
+    - Post-Tefra
+    - Post Tefra
+- name: Pre-Tefra
+  sourceIds: 
+    - "2"
+  sourceGroup: Employee
+  required: false
+  type: currency
+  accept:
+    - Pre-Tefra
+    - Pre Tefra
+- name: Prevailing Wage
+  sourceIds: 
+    - "C"
+  sourceGroup: Employer
+  required: false
+  type: currency
+  accept:
+    - Prevailing
+    - Wage
+    - Prevail
+- name: Prior Pension Plan
+  sourceIds: 
+    - "6"
+  sourceGroup: Employer
+  required: false
+  type: currency
+  accept:
+    - Prior
+    - Pension
+- name: QACA Match
+  sourceIds: 
+    - "U"
+  sourceGroup: Employer
+  required: false
+  type: currency
+  accept:
+    - QACA Match
+- name: QACA Non Elective
+  sourceIds: 
+    - "~"
+  sourceGroup: Employer
+  required: false
+  type: currency
+  accept:
+    - QACA Non Elective
+    - QACA Non-Elective
+    - QACANonElective
+- name: QMAC Qualified Match
+  sourceIds: 
+    - "="
+  sourceGroup: Employer
+  required: false
+  type: currency
+  accept:
+    - QMAC
+- name: QNEC Qualified Non Elective Contributions
+  sourceIds: 
+    - ">"
+  sourceGroup: Employer
+  required: false
+  type: currency
+  accept:
+    - QNEC
+    - Qualified Non Elective Contributions
+- name: QVEC
+  sourceIds: 
+    - "("
+  sourceGroup: Employer
+  required: false
+  type: currency
+  accept:
+    - QVEC
+- name: Rollover Contributions
+  sourceIds: 
+    - "8"
+  sourceGroup: Employee
+  required: false
+  type: currency
+  accept:
+    - Rollover Contributions
+    - Rollover Contribs
+    - Rollover Contrib
+    - Roll-over Contributions
+- name: Rollover Related
+  sourceIds: 
+    - "N"
+  sourceGroup: Employee
+  required: false
+  type: currency
+  accept:
+    - Rollover Related
+    - Rollover Rel
+    - Roll-over Related
+- name: Rollover Unrelated
+  sourceIds: 
+    - "R"
+  sourceGroup: Employee
+  required: false
+  type: currency
+  accept:
+    - Unrelated
+    - Rollover Un
+- name: Roth Contributions
+  sourceIds: 
+    - "{"
+    - "H"
+  sourceGroup: Employee
+  required: false
+  type: currency
+  accept:
+    - Roth*
+    - Roth Contrib*
+    - Roth Contribs*
+    - Roth Contributions*
+    - Roth Contribution*
+    - DesignatedRoth*
+    - RothContributions*
+- name: Roth Conversion Year 1
+  sourceIds: 
+    - "!"
+  sourceGroup: Employee
+  required: false
+  type: currency
+  accept:
+    - Year 1
+    - Yr 1
+- name: Roth Conversion Year 2
+  sourceIds: 
+    - "@"
+  sourceGroup: Employee
+  required: false
+  type: currency
+  accept:
+    - Year 2
+    - Yr 2
+- name: Roth Conversion Year 3
+  sourceIds: 
+    - "#"
+  sourceGroup: Employee
+  required: false
+  type: currency
+  accept:
+    - Year 3
+    - Yr 3
+- name: Roth Conversion Year 4
+  sourceIds: 
+    - "$"
+  sourceGroup: Employee
+  required: false
+  type: currency
+  accept:
+    - Year 4
+    - Yr 4
+- name: Roth Conversion Year 5
+  sourceIds: 
+    - "%"
+  sourceGroup: Employee
+  required: false
+  type: currency
+  accept:
+    - Year 5
+    - Yr 5
+- name: Roth Conversion Year 6
+  sourceIds: 
+    - "^"
+  sourceGroup: Employee
+  required: false
+  type: currency
+  accept:
+    - Year 6
+    - Yr 6
+- name: Roth Rollover
+  sourceIds: 
+    - "<"
+  sourceGroup: Employee
+  required: false
+  type: currency
+  accept:
+    - Roth Rollover
+- name: Roth Rollovers
+  sourceIds: 
+    - "Z"
+  sourceGroup: Employee
+  required: false
+  type: currency
+  accept:
+    - Roth Rollovers
+- name: Safe Harbor Match
+  sourceIds: 
+    - "/"
+  sourceGroup: Employer
+  required: false
+  type: currency
+  accept:
+    - Harbor Match
+    - HarborMatch
+- name: Safe Harbor Non Elective
+  sourceIds: 
+    - "["
+    - "}"
+  sourceGroup: Employer
+  required: false
+  type: currency
+  accept:
+    - Harbor Non
+- name: Salary Deferral
+  sourceIds: 
+    - "A"
+  sourceGroup: Employee
+  required: false
+  type: currency
+  accept:
+    - Salary Deferral*
+    - SalaryDeferral*
+    - Salary Def*
+    - SalaryDef*
+- name: Salary Deferrals - Pre Tax - 403(b)(7) Money
+  sourceIds: 
+    - "G"
+  sourceGroup: Employee
+  required: false
+  type: currency
+  accept:
+    - Pre Tax - 403(b)(7)
+    - Pre Tax 403(b)(7)
+    - Pre Tax 403b7
+    - Pre-Tax 403(b)(7)
+    - Pre-Tax 403b7
+    - Salary Deferrals 403(b)(7)
+    - Salary Deferrals 403b7
+- name: X-Employer
+  sourceIds: 
+    - "X"
+  sourceGroup: Employer
+  required: false
+  type: currency
+  accept:
+    - X-Employer
+    - X Employer
+    - X ER
