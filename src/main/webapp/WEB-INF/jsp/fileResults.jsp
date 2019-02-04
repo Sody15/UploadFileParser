@@ -14,123 +14,128 @@
 </head>
 
 <body>
-	<form id="file-results-form" name="file-results-form" action="">
-		<a id="back-btn" class="btn" href="/back"><span class="ti-arrow-left"></span> Back</a>
-	    <h1>${fn:toUpperCase(fn:substring(fileResults.uploadType, 0, 1))}${fn:toLowerCase(fn:substring(fileResults.uploadType, 1,fn:length(fileResults.uploadType)))}- File Results</h1>
-	    <h3>File Info</h3>
-	    <div class="row">
-	    	<div class="col-xs-3">
-		    	<label>File Name</label><p>${fileResults.fileName}</p>
-			</div>
-			<div class="col-xs-3">
-			    <label>Header Row #</label><p>${fileResults.headerRowNum}</p>
-			</div>
-			<div class="col-xs-3">
-			    <label>Last Row #</label><p>${fileResults.lastRowNum}</p>
-			</div>
-			<div class="col-xs-3">
-			    <label>Total Header Rows</label><p>${fileResults.totalNumHeaderRows}</p>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-xs-3">
-			    <label>Total Data Rows</label><p>${fileResults.totalNumDataRows}</p>
-			</div>
-			<c:if test="${fileResults.uploadType eq 'CONTRIBUTION'}">
-				<div class="col-xs-3">
-				    <label>File Total</label><p><fmt:formatNumber value="${fileResults.fileTotalAmt}" type = "currency"/></p>
-				</div>
-			</c:if>
-			<div class="col-xs-3">
-			    <label>Time Taken on Backend</label><p>${fileResults.timeTaken}</p>
-			</div>
-		</div>
-	    <h3>Header Column Mappings</h3>
-	    <table id="header-table" class="display nowrap" style="width:100%">
-		    <thead>
-		        <tr>
-		        	<th>Column</th>
-		            <th>Your Field</th>
-		            <th>Mapped To</th>
-		            <c:if test="${fileResults.uploadType eq 'CONTRIBUTION'}">
-		            	<th>Source ID</th>
-		        	</c:if>
-		        </tr>
-		    </thead>
-		    <tbody>
-		    	<c:forEach var="entry" items="${fileResults.headerList}">
-				    <tr>
-				    	<td>${entry.columnNum}</td>
-					    <td>${entry.userInputValue}</td>
-					    <td>
-					    	<c:choose>
-							  <c:when test="${entry.name == 'No Mapping Found'}">
-							  	<span style="color:red;">${entry.name}</span>
-							  </c:when>
-							  <c:otherwise>
-							  	${entry.name}
-							  </c:otherwise>
-							</c:choose>
-						</td>
-						<c:if test="${fileResults.uploadType eq 'CONTRIBUTION'}">
-							<td>${entry.sourceId}</td>
-						</c:if>
-				  	</tr>
-				</c:forEach>
-		    </tbody>
-		</table>
-	    <h3>File Data</h3>
-	    <table id="file-upload-data-table" class="display dataTable no-footer" style="width:100%" role="grid">
-	    	<tbody>
-	    		<tr class="odd">
-	    			<td valign="top" colspan="3" class="dataTables_empty" style="border-top:1px solid #111;">No data in File</td>
-	    		</tr>
-	    	</tbody>
-	    </table>
-	    <h3>File Errors</h3>
-	    <table id="file-upload-error-table" class="display nowrap" style="width:100%">
-		    <thead>
-		        <tr>
-		        	<th>Row #</th>
-		        	<th>Column</th>
-		            <th>Error Message</th>
-		            <th>Severity</th>
-		        </tr>
-		    </thead>
-		    <tbody>
-		    	<c:forEach var="entry" items="${fileResults.uploadErrorList}" varStatus="loop">
-		    		<tr>
-				    	<td>
-				    		<c:choose>
-							  <c:when test="${entry.rowNum != '*'}"><!-- <span class="file-error-row-num">${entry.rowNum}</span> -->${entry.rowNum}</c:when>
-							  <c:otherwise>${entry.rowNum}</c:otherwise>
-							</c:choose>
-				    	</td>
-					    <td>${entry.excelColumnNum}</td>
-					    <td>${entry.errorMsg}</td>
-					    <td>
-					    	<c:choose>
-							  <c:when test="${entry.severity == 'CRITICAL'}">
-							  	<span style="color:red;">${entry.severity}</span>
-							  </c:when>
-							  <c:otherwise>
-							  	${entry.severity}
-							  </c:otherwise>
-							</c:choose>
-						</td>
-				  	</tr>
-				</c:forEach>
-		    </tbody>
-		</table>
-		<a id="make-corrections-btn" class="btn" href="/back"><span class="ti-arrow-left"></span> Make Corrections</a>
-		<c:if test="${fileResults.canSubmitFile() and fileResults.totalNumDataRows != 0}">
-			<a id="submit-btn" class="btn" href="">Submit File <span class="ti-arrow-right"></span></a>
-		</c:if>
-	</form>
+    <form id="file-results-form" name="file-results-form" action="">
+        <a id="back-btn" class="btn" href="/back"><span class="ti-arrow-left"></span> Back</a>
+        <h1>${fn:toUpperCase(fn:substring(fileResults.uploadType, 0, 1))}${fn:toLowerCase(fn:substring(fileResults.uploadType, 1,fn:length(fileResults.uploadType)))}- File Results</h1>
+        <h3>File Info</h3>
+        <div class="row">
+            <div class="col-xs-3"><label>File Name</label>
+                <p>${fileResults.fileName}</p>
+            </div>
+            <div class="col-xs-3"><label>Header Row #</label>
+                <p>${fileResults.headerRowNum}</p>
+            </div>
+            <div class="col-xs-3"><label>Last Row #</label>
+                <p>${fileResults.lastRowNum}</p>
+            </div>
+            <div class="col-xs-3"><label>Total Header Rows</label>
+                <p>${fileResults.totalNumHeaderRows}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-3"><label>Total Data Rows</label>
+                <p>${fileResults.totalNumDataRows}</p>
+            </div>
+            <c:if test="${fileResults.uploadType eq 'CONTRIBUTION'}">
+                <div class="col-xs-3"><label>File Total</label>
+                    <p>
+                        <fmt:formatNumber value="${fileResults.fileTotalAmt}" type="currency" />
+                    </p>
+                </div>
+            </c:if>
+            <div class="col-xs-3"><label>Time Taken on Backend</label>
+                <p>${fileResults.timeTaken}</p>
+            </div>
+        </div>
+        <h3>Header Column Mappings</h3>
+        <table id="header-table" class="display nowrap" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Column</th>
+                    <th>Your Field</th>
+                    <th>Mapped To</th>
+                    <c:if test="${fileResults.uploadType eq 'CONTRIBUTION'}">
+                        <th>Source ID</th>
+                    </c:if>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach var="entry" items="${fileResults.headerList}">
+                    <tr>
+                        <td>${entry.columnNum}</td>
+                        <td>${entry.userInputValue}</td>
+                        <td>
+                            <c:choose>
+                                <c:when test="${entry.name == 'No Mapping Found'}">
+                                    <span style="color:red;">${entry.name}</span>
+                                </c:when>
+                                <c:otherwise>
+                                    ${entry.name}
+                                </c:otherwise>
+                            </c:choose>
+                        </td>
+                        <c:if test="${fileResults.uploadType eq 'CONTRIBUTION'}">
+                            <td>${entry.sourceId}</td>
+                        </c:if>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
+        <h3>File Data</h3>
+        <table id="file-upload-data-table" class="display dataTable no-footer" style="width:100%" role="grid">
+            <tbody>
+                <tr class="odd">
+                    <td valign="top" colspan="3" class="dataTables_empty" style="border-top:1px solid #111;">No data in File</td>
+                </tr>
+            </tbody>
+        </table>
+        <h3>File Errors</h3>
+        <table id="file-upload-error-table" class="display nowrap" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Row #</th>
+                    <th>Column</th>
+                    <th>Error Message</th>
+                    <th>Severity</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach var="entry" items="${fileResults.uploadErrorList}" varStatus="loop">
+                    <tr>
+                        <td>
+                            <c:choose>
+                                <c:when test="${entry.rowNum != '*'}">
+                                    <!-- <span class="file-error-row-num">${entry.rowNum}</span> -->${entry.rowNum}</c:when>
+                                <c:otherwise>${entry.rowNum}</c:otherwise>
+                            </c:choose>
+                        </td>
+                        <td>${entry.excelColumnNum}</td>
+                        <td>${entry.errorMsg}</td>
+                        <td>
+                            <c:choose>
+                                <c:when test="${entry.severity == 'CRITICAL'}">
+                                    <span style="color:red;">${entry.severity}</span>
+                                </c:when>
+                                <c:otherwise>
+                                    ${entry.severity}
+                                </c:otherwise>
+                            </c:choose>
+                        </td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
+        <a id="make-corrections-btn" class="btn" href="/back"><span class="ti-arrow-left"></span> Make Corrections</a>
+        <c:if test="${fileResults.canSubmitFile() and fileResults.totalNumDataRows != 0}">
+            <a id="submit-btn" class="btn" href="">Submit File <span class="ti-arrow-right"></span></a>
+        </c:if>
+    </form>
 </body>
+
 <div id="loader">
 	<div id="loader-icon"></div>
 </div>
+
 </html>
 
 <script>
@@ -150,7 +155,7 @@ $(document).ready(function() {
 	    var columns = [];
 	    columns.push({data: 'Row #', title: 'Row #'});
 	    <c:forEach var="entry" items="${fileResults.headerList}" varStatus="loop">
-			<c:if test="${entry.name != 'No Mapping Found'}">
+			<c:if test="${entry.name != 'No Mapping Found.'}">
 			    columns.push({data: '${entry.name}', title: '${entry.name}'});
 			</c:if>
 		</c:forEach>

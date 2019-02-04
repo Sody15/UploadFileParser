@@ -198,7 +198,7 @@ public class RegexMapper {
 						}
 						// If source isn't available for plan, add error
 						if (!sourceAvailable) {
-							fileResults.addUploadError(true, null, columnNum,
+							fileResults.addUploadError(true, 0, columnNum,
 									ErrorMessages.getSourceNotAvailErr(headerMapping.getName()),
 									FileUploadEnums.Error.CRITICAL.toString());
 						}
@@ -222,7 +222,7 @@ public class RegexMapper {
 			// If no match was found add an error
 			if (!headerMatchFound && (sourceNotFound != true)) {
 				headerField.setName(ErrorMessages.NO_MAPPING);
-				fileResults.addUploadError(true, null, columnNum, ErrorMessages.NO_MAPPING_COLUMN,
+				fileResults.addUploadError(true, 0, columnNum, ErrorMessages.NO_MAPPING_COLUMN,
 						FileUploadEnums.Error.WARNING.toString());
 			}
 		}
@@ -230,7 +230,7 @@ public class RegexMapper {
 		// If file type is contribution, make sure at least one source is on file, else
 		// add error
 		if (FileUploadEnums.UploadType.CONTRIBUTION.toString().equals(uploadType) && sourceCount == 0) {
-			fileResults.addUploadError(true, null, 0, ErrorMessages.AT_LEAST_ONE_SOURCE,
+			fileResults.addUploadError(true, 0, 0, ErrorMessages.AT_LEAST_ONE_SOURCE,
 					FileUploadEnums.Error.CRITICAL.toString());
 		}
 
@@ -240,7 +240,7 @@ public class RegexMapper {
 		for (String requiredHeaderName : headerRequiredList) {
 			// If required field isn't part of header- add upload error
 			if (!headerList.contains(requiredHeaderName)) {
-				fileResults.addUploadError(true, null, 0, ErrorMessages.getRequiredHeaderErr(requiredHeaderName),
+				fileResults.addUploadError(true, 0, 0, ErrorMessages.getRequiredHeaderErr(requiredHeaderName),
 						FileUploadEnums.Error.CRITICAL.toString());
 			}
 		}

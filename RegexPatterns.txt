@@ -1,8 +1,7 @@
-(?i)\bFirst\b|\bFname\b|(?=.*\bFirst\b)(?=.*\bName\b)|(?=.*\b1st\b)(?=.*\bName\b)|(?=.*\bF\b)(?=.*\bName\b)|\bFirstName\b|(?=.*\bName\b)(?=.*\b1\b)|\bName1\b|\bAnnuitantFirstName\b|\bFirst_Name\b|\bFirstNameMiddleInitial\b|\bName_First\b|\bPTDFirst\b
-(?i)\bInitial\b|\bInit\b|\bMiddle\b
+(?i)\bFirst\b|\bFname\b|(?=.*\bFirst\b)(?=.*\bName\b)|(?=.*\b1st\b)(?=.*\bName\b)|(?=.*\bF\b)(?=.*\bName\b)|\bFirstName\b|(?=.*\bName\b)(?=.*\b1\b)|\bName1\b|\bAnnuitantFirstName\b|\bFirst_Name\b|\bFirstNameMiddleInitial\b|\bName_First\b|\bPTDFirst\b|\bInitial\b|\bInit\b|\bMiddle\b
 (?i)\bLast\b|\bLname\b|(?=.*\bLast\b)(?=.*\bName\b)|(?=.*\b2nd\b)(?=.*\bName\b)|(?=.*\bL\b)(?=.*\bName\b)|\bLastName\b|(?=.*\b2\b)(?=.*\bName\b)|(?=.*\bName\b)(?=.*\b2\b)|\bName2\b|(?=.*\bL\b)(?=.*\bName\b)|\bLastName\b|\bPTDLast\b|\bLast_Name\b|\bAnnuitantLastName\b|\bName_Last\b
 (?i)\bSSN\b|\bSocial\b|\bSecurity\b|\bSocialSecurity\b|\bSocialSecurity#\b|\bSocialSecurityNum\b|\bSocialSecurityNumber\b|\bSSN#\b|\bSS#\b|\bSSN/FEIN\b
-(?i)^Status$|\bContractStatus\b|\bPolicyStatus\b|\bEmployeeStatus\b|\bEmployeeStatusType\b|(?=.*\bEmployee\b)(?=.*\bStatus\b)
+(?i)^Status$|\bContractStatus\b|\bPolicyStatus\b|\bEmployeeStatus\b|\bEmployeeStatusType\b|(?=.*\bEmployee\b)(?=.*\bStatus\b)|\bStatus-Code\b|(?=.*\bStatus\b)(?=.*\b-\b)(?=.*\bCode\b)|(?=.*\bStatus\b)(?=.*\bCode\b)
 (?i)\bActive\b|\bAct\b|^A$
 (?i)^Eligible$|^Elig$|^E$
 (?i)(?=.*\bNot\b)(?=.*\beligible\b)|^N$
@@ -15,7 +14,7 @@
 (?i)\bBeneficiary\b|\bBene\b|^B$
 (?i)\bQDRO\b|^Q$
 (?i)(?=.*\bPend\b)(?=.*\bEligible\b)|(?=.*\bPending\b)(?=.*\bEligible\b)|^P$
-(?i)(?=.*\bEmployee\b)(?=.*\bTypes\b)|(?=.*\bEmployee\b)(?=.*\bType\b)|\bEmployeeType\b|\bEmployeeTypes\b|\bEmployee-Type\b|(?=.*\bEmployee\b)(?=.*\b-\b)(?=.*\bType\b)|(?=.*\bEmployee-\b)(?=.*\bType\b)|\bEmployee-Types\b|(?=.*\bEmployee\b)(?=.*\b-\b)(?=.*\bTypes\b)|(?=.*\bEmployee-\b)(?=.*\bTypes\b)|\bEE-Type\b|\bEE-Types\b
+(?i)(?=.*\bEmployee\b)(?=.*\bTypes\b)|(?=.*\bEmployee\b)(?=.*\bType\b)|\bEmployeeType\b|\bEmployeeTypes\b|\bEmployee-Type\b|(?=.*\bEmployee\b)(?=.*\b-\b)(?=.*\bType\b)|(?=.*\bEmployee-\b)(?=.*\bType\b)|\bEmployee-Types\b|(?=.*\bEmployee\b)(?=.*\b-\b)(?=.*\bTypes\b)|(?=.*\bEmployee-\b)(?=.*\bTypes\b)|\bEE-Type\b|\bEE-Types\b|(?=.*\bEE\b)(?=.*\bType\b)|\bEEType\b|(?=.*\bEE\b)(?=.*\bTypes\b)|\bEETypes\b
 (?i)(?=.*\bUnion\b)(?=.*\bemployee\b)|(?=.*\bCollectively\b)(?=.*\bBargained\b)
 (?i)\bNon-resident\b|\bAlien\b
 (?i)\bContractor\b|\bLeased\b
@@ -25,13 +24,13 @@
 (?i)\bHCE\b|(?=.*\bHighly\b)(?=.*\bCompensated\b)(?=.*\bEmployee\b)
 (?i)\bKey\b|\bCritical\b
 (?i)\bNon-key\b
-(?i)(?=.*\bEmployee\b)(?=.*\bClass\b)|\bEmployeeClass\b|\bEmployee-Class\b|(?=.*\bEmployee\b)(?=.*\b-\b)(?=.*\bClass\b)|(?=.*\bEE\b)(?=.*\bClass\b)|\bEEClass\b
+(?i)(?=.*\bEmployee\b)(?=.*\bClass\b)|(?=.*\bEmployee\b)(?=.*\bClass\b)|\bEmployeeClass\b|\bEmployee-Class\b|(?=.*\bEmployee\b)(?=.*\b-\b)(?=.*\bClass\b)|(?=.*\bEmployee-\b)(?=.*\bClass\b)|\bEmployee-Class\b|(?=.*\bEmployee\b)(?=.*\b-\b)(?=.*\bClass\b)|(?=.*\bEmployee-\b)(?=.*\bClass\b)|\bEE-Class\b|\bEE-Class\b|(?=.*\bEE\b)(?=.*\bClass\b)|\bEEClass\b
 (?i)\bPart\b|\bPart-time\b
 (?i)\bFull\b|\bFull-time\b
 (?i)\bOfficer\b
 (?i)\bBirth\b|\bDOB\b|\bD.O.B\b|\bD.O.B.\b|\bDateOfBirth\b|\bDateBirth\b|\bBirthDate\b|\bBirthDt\b
 (?i)\bGender\b|\bSex\b
-(?i)(?=.*\bAddress\b)(?=.*\b1\b)|\bAddress1\b|(?=.*\bAddress\b)(?=.*\bLine\b)(?=.*\b1\b)|(?=.*\bAddress\b)(?=.*\bLn\b)(?=.*\b1\b)|\bAddressLine1\b|\bAddressLn1\b|(?=.*\bAdd\b)(?=.*\b1\b)|(?=.*\bAdd.\b)(?=.*\b1\b)|(?=.*\bStreet\b)(?=.*\bAddress\b)(?=.*\b1\b)|\bStreetAddress1\b|(?=.*\bStreet\b)(?=.*\bAddress\b)|\bStreetAddress\b|(?=.*\bStreet\b)(?=.*\bLine\b)(?=.*\b1\b)|\bStreetLine1\b
+(?i)(?=.*\bAddress\b)(?=.*\b1\b)|\bAddress1\b|(?=.*\bAddress\b)(?=.*\bLine\b)(?=.*\b1\b)|(?=.*\bAddress\b)(?=.*\bLn\b)(?=.*\b1\b)|\bAddressLine1\b|\bAddressLn1\b|(?=.*\bAdd\b)(?=.*\b1\b)|(?=.*\bAdd.\b)(?=.*\b1\b)|(?=.*\bStreet\b)(?=.*\bAddress\b)(?=.*\b1\b)|\bStreetAddress1\b|(?=.*\bStreet\b)(?=.*\bAddress\b)|\bStreetAddress\b|(?=.*\bStreet\b)(?=.*\bLine\b)(?=.*\b1\b)|\bStreetLine1\b|^Address$
 (?i)(?=.*\bAddress\b)(?=.*\b2\b)|\bAddress2\b|(?=.*\bAddress\b)(?=.*\bLine\b)(?=.*\b2\b)|(?=.*\bAddress\b)(?=.*\bLn\b)(?=.*\b2\b)|\bAddressLine2\b|\bAddressLn2\b|(?=.*\bAdd\b)(?=.*\b2\b)|(?=.*\bAdd.\b)(?=.*\b2\b)|(?=.*\bStreet\b)(?=.*\bAddress\b)(?=.*\b2\b)|\bStreetAddress2\b|(?=.*\bStreet\b)(?=.*\bLine\b)(?=.*\b2\b)|\bStreetLine2\b
 (?i)\bCity\b|\bTown\b|\bCityOrTown\b
 (?i)\bState\b|\bSt\b|\bStateCode\b|\bStateCd\b|\bStCode\b|\bStCd\b
@@ -44,7 +43,7 @@
 (?i)(?=.*\bStatus\b)(?=.*\bChange\b)|\bStatusChange\b|\bStatusChangeDate\b|\bStatusChangeDt\b
 (?i)\bHardship\b|\bSuspension\b
 (?i)(?=.*\bTermination\b)(?=.*\bDate\b)|\bTerminationDate\b|(?=.*\bTerm\b)(?=.*\bDate\b)|\bTermDate\b|(?=.*\bTermination\b)(?=.*\bDt\b)|\bTerminationDt\b|(?=.*\bTerm\b)(?=.*\bDt\b)|\bTermDt\b|\bTerm-Date\b|\bTerm-Dt\b
-(?i)(?=.*\bHire\b)(?=.*\bDate\b)|(?=.*\bHire\b)(?=.*\bDt\b)|\bHireDate\b|\bHireDt\b|(?=.*\bDate\b)(?=.*\bof\b)(?=.*\bHire\b)|\bDateOfHire\b|(?=.*\bDt\b)(?=.*\bof\b)(?=.*\bHire\b)|\bDtOfHire\b
+(?i)^Hire Date$|^Hire Dt$|^HireDate$|^HireDt$|^Date of Hire$|^DateOfHire$|^Dt of Hire$|^DtOfHire$
 (?i)(?=.*\bPlan\b)(?=.*\bEntry\b)(?=.*\bDate\b)|\bPlanEntryDate\b|(?=.*\bPlan\b)(?=.*\bEntry\b)(?=.*\bDt\b)|\bPlanEntryDt\b|(?=.*\bEntry\b)(?=.*\bDate\b)|\bEntryDate\b|(?=.*\bEntry\b)(?=.*\bDt\b)|\bEntryDt\b
 (?i)(?=.*\b1-Year\b)(?=.*\bof\b)(?=.*\bService\b)|(?=.*\bOne\b)(?=.*\bYear\b)|(?=.*\b1\b)(?=.*\bYear\b)|(?=.*\bYear\b)(?=.*\bof\b)(?=.*\bService\b)
 (?i)\bRelationship\b|\bRelation\b
@@ -119,11 +118,10 @@
 (?i)^Salary Deferral$|^SalaryDeferral$|^Salary Def$|^SalaryDef$
 (?i)(?=.*\bPre\b)(?=.*\bTax\b)(?=.*\b-\b)(?=.*\b403(b)(7)\b)|(?=.*\bPre\b)(?=.*\bTax\b)(?=.*\b403(b)(7)\b)|(?=.*\bPre\b)(?=.*\bTax\b)(?=.*\b403b7\b)|(?=.*\bPre-Tax\b)(?=.*\b403(b)(7)\b)|(?=.*\bPre-Tax\b)(?=.*\b403b7\b)|(?=.*\bSalary\b)(?=.*\bDeferrals\b)(?=.*\b403(b)(7)\b)|(?=.*\bSalary\b)(?=.*\bDeferrals\b)(?=.*\b403b7\b)
 (?i)\bX-Employer\b|(?=.*\bX\b)(?=.*\bEmployer\b)|(?=.*\bX\b)(?=.*\bER\b)
-(?i)\bFirst\b|\bFname\b|(?=.*\bFirst\b)(?=.*\bName\b)|(?=.*\b1st\b)(?=.*\bName\b)|(?=.*\bF\b)(?=.*\bName\b)|\bFirstName\b|(?=.*\bName\b)(?=.*\b1\b)|\bName1\b|\bAnnuitantFirstName\b|\bFirst_Name\b|\bFirstNameMiddleInitial\b|\bName_First\b|\bPTDFirst\b
-(?i)\bInitial\b|\bInit\b|\bMiddle\b
+(?i)\bFirst\b|\bFname\b|(?=.*\bFirst\b)(?=.*\bName\b)|(?=.*\b1st\b)(?=.*\bName\b)|(?=.*\bF\b)(?=.*\bName\b)|\bFirstName\b|(?=.*\bName\b)(?=.*\b1\b)|\bName1\b|\bAnnuitantFirstName\b|\bFirst_Name\b|\bFirstNameMiddleInitial\b|\bName_First\b|\bPTDFirst\b|\bInitial\b|\bInit\b|\bMiddle\b
 (?i)\bLast\b|\bLname\b|(?=.*\bLast\b)(?=.*\bName\b)|(?=.*\b2nd\b)(?=.*\bName\b)|(?=.*\bL\b)(?=.*\bName\b)|\bLastName\b|(?=.*\b2\b)(?=.*\bName\b)|(?=.*\bName\b)(?=.*\b2\b)|\bName2\b|(?=.*\bL\b)(?=.*\bName\b)|\bLastName\b|\bPTDLast\b|\bLast_Name\b|\bAnnuitantLastName\b|\bName_Last\b
 (?i)\bSSN\b|\bSocial\b|\bSecurity\b|\bSocialSecurity\b|\bSocialSecurity#\b|\bSocialSecurityNum\b|\bSocialSecurityNumber\b|\bSSN#\b|\bSS#\b|\bSSN/FEIN\b
-(?i)^Status$|\bContractStatus\b|\bPolicyStatus\b|\bEmployeeStatus\b|\bEmployeeStatusType\b|(?=.*\bEmployee\b)(?=.*\bStatus\b)
+(?i)^Status$|\bContractStatus\b|\bPolicyStatus\b|\bEmployeeStatus\b|\bEmployeeStatusType\b|(?=.*\bEmployee\b)(?=.*\bStatus\b)|\bStatus-Code\b|(?=.*\bStatus\b)(?=.*\b-\b)(?=.*\bCode\b)|(?=.*\bStatus\b)(?=.*\bCode\b)
 (?i)\bActive\b|\bAct\b|^A$
 (?i)^Eligible$|^Elig$|^E$
 (?i)(?=.*\bNot\b)(?=.*\beligible\b)|^N$
@@ -136,7 +134,7 @@
 (?i)\bBeneficiary\b|\bBene\b|^B$
 (?i)\bQDRO\b|^Q$
 (?i)(?=.*\bPend\b)(?=.*\bEligible\b)|(?=.*\bPending\b)(?=.*\bEligible\b)|^P$
-(?i)(?=.*\bEmployee\b)(?=.*\bTypes\b)|(?=.*\bEmployee\b)(?=.*\bType\b)|\bEmployeeType\b|\bEmployeeTypes\b|\bEmployee-Type\b|(?=.*\bEmployee\b)(?=.*\b-\b)(?=.*\bType\b)|(?=.*\bEmployee-\b)(?=.*\bType\b)|\bEmployee-Types\b|(?=.*\bEmployee\b)(?=.*\b-\b)(?=.*\bTypes\b)|(?=.*\bEmployee-\b)(?=.*\bTypes\b)|\bEE-Type\b|\bEE-Types\b
+(?i)(?=.*\bEmployee\b)(?=.*\bTypes\b)|(?=.*\bEmployee\b)(?=.*\bType\b)|\bEmployeeType\b|\bEmployeeTypes\b|\bEmployee-Type\b|(?=.*\bEmployee\b)(?=.*\b-\b)(?=.*\bType\b)|(?=.*\bEmployee-\b)(?=.*\bType\b)|\bEmployee-Types\b|(?=.*\bEmployee\b)(?=.*\b-\b)(?=.*\bTypes\b)|(?=.*\bEmployee-\b)(?=.*\bTypes\b)|\bEE-Type\b|\bEE-Types\b|(?=.*\bEE\b)(?=.*\bType\b)|\bEEType\b|(?=.*\bEE\b)(?=.*\bTypes\b)|\bEETypes\b
 (?i)(?=.*\bUnion\b)(?=.*\bemployee\b)|(?=.*\bCollectively\b)(?=.*\bBargained\b)
 (?i)\bNon-resident\b|\bAlien\b
 (?i)\bContractor\b|\bLeased\b
@@ -146,13 +144,13 @@
 (?i)\bHCE\b|(?=.*\bHighly\b)(?=.*\bCompensated\b)(?=.*\bEmployee\b)
 (?i)\bKey\b|\bCritical\b
 (?i)\bNon-key\b
-(?i)(?=.*\bEmployee\b)(?=.*\bClass\b)|\bEmployeeClass\b|\bEmployee-Class\b|(?=.*\bEmployee\b)(?=.*\b-\b)(?=.*\bClass\b)|(?=.*\bEE\b)(?=.*\bClass\b)|\bEEClass\b
+(?i)(?=.*\bEmployee\b)(?=.*\bClass\b)|(?=.*\bEmployee\b)(?=.*\bClass\b)|\bEmployeeClass\b|\bEmployee-Class\b|(?=.*\bEmployee\b)(?=.*\b-\b)(?=.*\bClass\b)|(?=.*\bEmployee-\b)(?=.*\bClass\b)|\bEmployee-Class\b|(?=.*\bEmployee\b)(?=.*\b-\b)(?=.*\bClass\b)|(?=.*\bEmployee-\b)(?=.*\bClass\b)|\bEE-Class\b|\bEE-Class\b|(?=.*\bEE\b)(?=.*\bClass\b)|\bEEClass\b
 (?i)\bPart\b|\bPart-time\b
 (?i)\bFull\b|\bFull-time\b
 (?i)\bOfficer\b
 (?i)\bBirth\b|\bDOB\b|\bD.O.B\b|\bD.O.B.\b|\bDateOfBirth\b|\bDateBirth\b|\bBirthDate\b|\bBirthDt\b
 (?i)\bGender\b|\bSex\b
-(?i)(?=.*\bAddress\b)(?=.*\b1\b)|\bAddress1\b|(?=.*\bAddress\b)(?=.*\bLine\b)(?=.*\b1\b)|(?=.*\bAddress\b)(?=.*\bLn\b)(?=.*\b1\b)|\bAddressLine1\b|\bAddressLn1\b|(?=.*\bAdd\b)(?=.*\b1\b)|(?=.*\bAdd.\b)(?=.*\b1\b)|(?=.*\bStreet\b)(?=.*\bAddress\b)(?=.*\b1\b)|\bStreetAddress1\b|(?=.*\bStreet\b)(?=.*\bAddress\b)|\bStreetAddress\b|(?=.*\bStreet\b)(?=.*\bLine\b)(?=.*\b1\b)|\bStreetLine1\b
+(?i)(?=.*\bAddress\b)(?=.*\b1\b)|\bAddress1\b|(?=.*\bAddress\b)(?=.*\bLine\b)(?=.*\b1\b)|(?=.*\bAddress\b)(?=.*\bLn\b)(?=.*\b1\b)|\bAddressLine1\b|\bAddressLn1\b|(?=.*\bAdd\b)(?=.*\b1\b)|(?=.*\bAdd.\b)(?=.*\b1\b)|(?=.*\bStreet\b)(?=.*\bAddress\b)(?=.*\b1\b)|\bStreetAddress1\b|(?=.*\bStreet\b)(?=.*\bAddress\b)|\bStreetAddress\b|(?=.*\bStreet\b)(?=.*\bLine\b)(?=.*\b1\b)|\bStreetLine1\b|^Address$
 (?i)(?=.*\bAddress\b)(?=.*\b2\b)|\bAddress2\b|(?=.*\bAddress\b)(?=.*\bLine\b)(?=.*\b2\b)|(?=.*\bAddress\b)(?=.*\bLn\b)(?=.*\b2\b)|\bAddressLine2\b|\bAddressLn2\b|(?=.*\bAdd\b)(?=.*\b2\b)|(?=.*\bAdd.\b)(?=.*\b2\b)|(?=.*\bStreet\b)(?=.*\bAddress\b)(?=.*\b2\b)|\bStreetAddress2\b|(?=.*\bStreet\b)(?=.*\bLine\b)(?=.*\b2\b)|\bStreetLine2\b
 (?i)\bCity\b|\bTown\b|\bCityOrTown\b
 (?i)\bState\b|\bSt\b|\bStateCode\b|\bStateCd\b|\bStCode\b|\bStCd\b
@@ -165,7 +163,7 @@
 (?i)(?=.*\bStatus\b)(?=.*\bChange\b)|\bStatusChange\b|\bStatusChangeDate\b|\bStatusChangeDt\b
 (?i)\bHardship\b|\bSuspension\b
 (?i)(?=.*\bTermination\b)(?=.*\bDate\b)|\bTerminationDate\b|(?=.*\bTerm\b)(?=.*\bDate\b)|\bTermDate\b|(?=.*\bTermination\b)(?=.*\bDt\b)|\bTerminationDt\b|(?=.*\bTerm\b)(?=.*\bDt\b)|\bTermDt\b|\bTerm-Date\b|\bTerm-Dt\b
-(?i)(?=.*\bHire\b)(?=.*\bDate\b)|(?=.*\bHire\b)(?=.*\bDt\b)|\bHireDate\b|\bHireDt\b|(?=.*\bDate\b)(?=.*\bof\b)(?=.*\bHire\b)|\bDateOfHire\b|(?=.*\bDt\b)(?=.*\bof\b)(?=.*\bHire\b)|\bDtOfHire\b
+(?i)^Hire Date$|^Hire Dt$|^HireDate$|^HireDt$|^Date of Hire$|^DateOfHire$|^Dt of Hire$|^DtOfHire$
 (?i)(?=.*\bPlan\b)(?=.*\bEntry\b)(?=.*\bDate\b)|\bPlanEntryDate\b|(?=.*\bPlan\b)(?=.*\bEntry\b)(?=.*\bDt\b)|\bPlanEntryDt\b|(?=.*\bEntry\b)(?=.*\bDate\b)|\bEntryDate\b|(?=.*\bEntry\b)(?=.*\bDt\b)|\bEntryDt\b
 (?i)(?=.*\b1-Year\b)(?=.*\bof\b)(?=.*\bService\b)|(?=.*\bOne\b)(?=.*\bYear\b)|(?=.*\b1\b)(?=.*\bYear\b)|(?=.*\bYear\b)(?=.*\bof\b)(?=.*\bService\b)
 (?i)\bRelationship\b|\bRelation\b

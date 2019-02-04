@@ -31,6 +31,8 @@ public class CensusParser extends ParseField {
 			} else if (ObjectUtil.isNotNullOrEmpty(val) && ("Status".equals(headerName)
 					|| "Employee Types".equals(headerName) || "Employee Class".equals(headerName))) {
 				getKeyTerm();
+			} else if ("ZIP".equals(headerName)) {
+				parseZip();
 			}
 		} else {
 			checkIfEmptyFieldIsRequired();
@@ -45,8 +47,40 @@ public class CensusParser extends ParseField {
 			val = "Female";
 		} else {
 			val = "";
-			fileResults.addUploadError(false, row, columnNum, ErrorMessages.getValueNotValidErr("Gender"),
+			fileResults.addUploadError(false, row.getRowNum() + 1, columnNum, ErrorMessages.getValueNotValidErr("Gender"),
 					FileUploadEnums.Error.WARNING.toString());
+		}
+	}
+	
+	private static void parseZip() {
+		if (val.length() != 5 && val.length() != 9) {
+			if (val.length() < 5) {
+				if (val.length() >= 3) {
+					// Add zeros to beginning
+					while (val.length() != 5) {
+						val = "0" + val;
+					}
+				} else if (val.length() < 3) {
+					fileResults.addUploadError(false, row.getRowNum() + 1, columnNum, ErrorMessages.ZIP_CONTAIN_5_CHARACTERS,
+							FileUploadEnums.Error.CRITICAL.toString());
+					val = "";
+				}
+			} else if (val.length() > 5 && val.length() < 9) {
+				if (val.length() < 7) {
+					fileResults.addUploadError(false, row.getRowNum() + 1, columnNum, ErrorMessages.ZIP_CONTAIN_9_CHARACTERS,
+							FileUploadEnums.Error.CRITICAL.toString());
+					val = "";
+				} else {
+					// Add zeros to beginning
+					while (val.length() != 9) {
+						val = "0" + val;
+					}
+				}
+			} else if (val.length() > 9) {
+				fileResults.addUploadError(false, row.getRowNum() + 1, columnNum, ErrorMessages.ZIP_NO_GREATER_THAN_9,
+						FileUploadEnums.Error.CRITICAL.toString());
+				val = "";
+			}
 		}
 	}
 }

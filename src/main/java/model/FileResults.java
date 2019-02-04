@@ -144,12 +144,12 @@ public class FileResults {
 		this.canSubmitFile = canSubmitFile;
 	}
 	
-	public void addUploadError(boolean globalError, Row row, int columnIndex, String errorMsg, String severity) {
+	public void addUploadError(boolean globalError, int rowIndex, int columnIndex, String errorMsg, String severity) {
 		UploadError uploadError = new UploadError();
 		if (globalError) {
 			uploadError.setRowNum("*");
-		} else if (row != null) {
-			uploadError.setRowNum(Integer.toString(row.getRowNum() + 1));
+		} else if (rowIndex != 0) {
+			uploadError.setRowNum(Integer.toString(rowIndex));
 		}
 		if (columnIndex != 0) {
 			uploadError.setColumnNum(Integer.toString(columnIndex));

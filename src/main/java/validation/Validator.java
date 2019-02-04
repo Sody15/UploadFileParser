@@ -41,13 +41,24 @@ public class Validator {
 		}
 		// Census Validation
 		else if (FileUploadEnums.UploadType.CENSUS.toString().equalsIgnoreCase(uploadType)) {
+			CensusValidator censusValidator = new CensusValidator(fileResults);
+			// Iterate over all rows
 			for (Object jsonRowObj : fileResults.getJsonDataArray()) {
-				jsonRowObj = (JSONObject) jsonRowObj;				
+				jsonRowObj = (JSONObject) jsonRowObj;
+				// Iterate over each rows cells
 				for(Iterator iterator = ((HashMap) jsonRowObj).keySet().iterator(); iterator.hasNext();) {
 				    String headerName = (String) iterator.next();
-				    Object headerValue = ((HashMap) jsonRowObj).get(headerName);
-				    
+				    Object value = ((HashMap) jsonRowObj).get(headerName);
+				    if ("Address 1".equals(headerName) || "Address 2".equals(headerName)) {
+				    	int characterLimit = "Address 1".equals(headerName) ? censusValidator.address1_MaxLength : censusValidator.address2_MaxLength;
+				    	censusValidator.maxCharacterLimit((JSONObject)jsonRowObj, headerName, (String)value, characterLimit);
+				    	censusValidator.poBoxCheck((JSONObject)jsonRowObj, headerName, (String)value);
+				    	censusValidator.noSpecialCharacters((JSONObject)jsonRowObj, headerName, (String)value);
+				    }
 				}
+				
+				// Fullname Validation
+				censusValidator.fullName((JSONObject)jsonRowObj);
 			}
 		}
 		// Compliance Validation

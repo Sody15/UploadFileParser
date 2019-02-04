@@ -133,3 +133,7 @@ legend {
 .modal-body p {
     font-size: 16px;
 }
+
+#file-upload-data-table_filter input {
+    height: 30px!important;
+}

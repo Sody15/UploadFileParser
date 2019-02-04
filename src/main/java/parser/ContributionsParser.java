@@ -36,7 +36,7 @@ public class ContributionsParser extends ParseField {
 	public static void formatContractNum() {
 		boolean valid = true;
 		val = val.trim().replaceAll("-", "");
-		if (val.matches(REGEX_ONLY_NUMBERS)) {
+		if (val.matches(REGEX_ONLY_NUMBERS_ALLOWED)) {
 			if (val.length() == 8) {
 				val = "0" + val;
 			} else if (val.length() != CONTRACT_NUMBER_LENGTH) {
@@ -48,7 +48,7 @@ public class ContributionsParser extends ParseField {
 		
 		if (!valid) {
 			val = "";
-			fileResults.addUploadError(false, row, columnNum, ErrorMessages.getNotCorrectFormatErr("Contract Number"),
+			fileResults.addUploadError(false, row.getRowNum() + 1, columnNum, ErrorMessages.getInCorrectFormatErr("Contract Number"),
 					FileUploadEnums.Error.CRITICAL.toString());
 		}
 	}

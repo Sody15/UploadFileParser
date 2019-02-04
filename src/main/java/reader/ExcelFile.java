@@ -116,7 +116,7 @@ public class ExcelFile {
 				// If contribution, make sure file total is greater than zero, if not then display error.
 				if (FileUploadEnums.UploadType.CONTRIBUTION.toString().equalsIgnoreCase(fileResults.getUploadType()) 
 						&& fileResults.getFileTotalAmt() == 0) {
-					fileResults.addUploadError(true, null, 0, 
+					fileResults.addUploadError(true, 0, 0, 
 							ErrorMessages.FILE_TOTAL_GREATER_THAN_ZERO,
 							FileUploadEnums.Error.CRITICAL.toString());
 				}
@@ -242,7 +242,7 @@ public class ExcelFile {
 						rowObj.put(headerName, "");
 						// If required field
 						if (headerField.isRequired()) {
-							fileResults.addUploadError(false, row, columnNum, 
+							fileResults.addUploadError(false, row.getRowNum() + 1, columnNum, 
 									ErrorMessages.getRequiredFieldErr(headerName),
 									FileUploadEnums.Error.CRITICAL.toString());
 						}
@@ -253,7 +253,7 @@ public class ExcelFile {
 				ex.printStackTrace();
 				if (ex instanceof IllegalStateException || ex instanceof NumberFormatException 
 						|| ex instanceof NullPointerException) {
-					fileResults.addUploadError(false, row, columnNum,
+					fileResults.addUploadError(false, row.getRowNum() + 1, columnNum,
 							ErrorMessages.GENERIC,
 							FileUploadEnums.Error.CRITICAL.toString());
 				}
@@ -279,10 +279,12 @@ public class ExcelFile {
 			HeaderField headerField = headerMap.get(columnNum);
 			headerName = headerField.getName();
 			boolean hasMapping = !ErrorMessages.NO_MAPPING.equalsIgnoreCase(headerName);
+			String type = null;
+			Cell cell = null;
 			try {
 				rowNum = row.getRowNum() + 1;
-				Cell cell = row.getCell(columnNum - 1);
-				String type = headerField.getType();
+				cell = row.getCell(columnNum - 1);
+				type = headerField.getType();
 				
 				// Cell is not Empty
 				if (hasMapping) {
@@ -321,7 +323,7 @@ public class ExcelFile {
 						rowObj.put(headerName, "");
 						// If required field
 						if (headerField.isRequired()) {
-							fileResults.addUploadError(false, row, columnNum, 
+							fileResults.addUploadError(false, row.getRowNum() + 1, columnNum, 
 									ErrorMessages.getRequiredFieldErr(headerName),
 									FileUploadEnums.Error.CRITICAL.toString());
 						}
@@ -330,11 +332,16 @@ public class ExcelFile {
 			}
 			catch (Exception ex) {
 				ex.printStackTrace();
-				if (ex instanceof IllegalStateException || ex instanceof NumberFormatException 
-						|| ex instanceof NullPointerException) {
-					fileResults.addUploadError(false, row, columnNum,
-							ErrorMessages.GENERIC,
-							FileUploadEnums.Error.CRITICAL.toString());
+				// Invalid date
+				if (hasMapping && cell != null && FileUploadEnums.HeaderType.DATE.toString().equalsIgnoreCase(type)) {
+					String severity = headerField.isRequired() ? FileUploadEnums.Error.CRITICAL.toString() : FileUploadEnums.Error.WARNING.toString();
+					fileResults.addUploadError(false, row.getRowNum() + 1, columnNum,
+							ErrorMessages.getDateInvalidErr(headerName),
+							severity);
+				} else {
+					fileResults.addUploadError(false, row.getRowNum() + 1, columnNum,
+						ErrorMessages.GENERIC,
+						FileUploadEnums.Error.CRITICAL.toString());
 				}
 				if (hasMapping) {
 					rowObj.put(headerName, "");
@@ -400,7 +407,7 @@ public class ExcelFile {
 						rowObj.put(headerName, "");
 						// If required field
 						if (headerField.isRequired()) {
-							fileResults.addUploadError(false, row, columnNum, 
+							fileResults.addUploadError(false, row.getRowNum() + 1, columnNum, 
 									ErrorMessages.getRequiredFieldErr(headerName),
 									FileUploadEnums.Error.CRITICAL.toString());
 						}
@@ -411,7 +418,7 @@ public class ExcelFile {
 				ex.printStackTrace();
 				if (ex instanceof IllegalStateException || ex instanceof NumberFormatException 
 						|| ex instanceof NullPointerException) {
-					fileResults.addUploadError(false, row, columnNum,
+					fileResults.addUploadError(false, row.getRowNum() + 1, columnNum,
 							ErrorMessages.GENERIC,
 							FileUploadEnums.Error.CRITICAL.toString());
 				}

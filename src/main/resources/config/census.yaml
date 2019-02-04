@@ -1,7 +1,7 @@
 # Census
 ---
 # General
-- name: First Name
+- name: First Name MI
   required: true
   type: string
   accept:
@@ -18,10 +18,6 @@
     - FirstNameMiddleInitial
     - Name_First
     - PTDFirst
-- name: Initial
-  required: false
-  type: string
-  accept:
     - Initial
     - Init
     - Middle
@@ -70,6 +66,9 @@
     - EmployeeStatus
     - EmployeeStatusType
     - Employee Status
+    - Status-Code
+    - Status - Code
+    - Status Code
   keyTerms:
     - name: Active
       values: 
@@ -137,6 +136,10 @@
     - Employee- Types
     - EE-Type
     - EE-Types
+    - EE Type
+    - EEType
+    - EE Types
+    - EETypes
   keyTerms:
     - name: Union employee (aka Collectively Bargained)
       values: 
@@ -178,9 +181,16 @@
   type: string
   accept:
     - Employee Class
+    - Employee Class
     - EmployeeClass
     - Employee-Class
     - Employee - Class
+    - Employee- Class
+    - Employee-Class
+    - Employee - Class
+    - Employee- Class
+    - EE-Class
+    - EE-Class
     - EE Class
     - EEClass
   keyTerms:
@@ -210,7 +220,7 @@
     - BirthDate
     - BirthDt
 - name: Gender
-  required: N
+  required: false
   type: string
   accept:
     - Gender
@@ -233,6 +243,7 @@
     - StreetAddress
     - Street Line 1
     - StreetLine1
+    - Address*
 - name: Address 2
   required: false
   type: string
@@ -354,14 +365,14 @@
   required: true
   type: date
   accept:
-    - Hire Date
-    - Hire Dt
-    - HireDate
-    - HireDt
-    - Date of Hire
-    - DateOfHire
-    - Dt of Hire
-    - DtOfHire
+    - Hire Date*
+    - Hire Dt*
+    - HireDate*
+    - HireDt*
+    - Date of Hire*
+    - DateOfHire*
+    - Dt of Hire*
+    - DtOfHire*
 - name: Plan Entry Date
   required: false
   type: date

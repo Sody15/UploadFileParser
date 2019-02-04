@@ -22,7 +22,10 @@ public class ParseField {
 	protected static Integer columnNum;
 	protected static JSONObject rowObj;
 	
-	protected final static String REGEX_ONLY_NUMBERS = "[0-9]+";
+	protected final static String REGEX_ONLY_NUMBERS_ALLOWED = "[0-9]+";
+	private static String REGEX_GET_ONLY_DIGITS = "\\D+";
+	
+	private static String SSN_PATTERN = "***-**-";
 	protected final static int SSN_LENGTH = 9;
 	protected final static int CONTRACT_NUMBER_LENGTH = 9;
 	
@@ -49,7 +52,7 @@ public class ParseField {
 	// If field is required, show error
 	protected static void checkIfEmptyFieldIsRequired() {
 		if (headerField.isRequired()) {
-			fileResults.addUploadError(false, row, columnNum,
+			fileResults.addUploadError(false, row.getRowNum() + 1, columnNum,
 					ErrorMessages.getRequiredFieldErr(headerField.getName()),
 					FileUploadEnums.Error.CRITICAL.toString());
 			val = "";
@@ -75,39 +78,29 @@ public class ParseField {
 		if (!found) {
 			String severity = headerField.isRequired() ? FileUploadEnums.Error.CRITICAL.toString()
 					: FileUploadEnums.Error.WARNING.toString();
-			fileResults.addUploadError(false, row, columnNum,
+			fileResults.addUploadError(false, row.getRowNum() + 1, columnNum,
 					ErrorMessages.getKeyTermNoMappingErr(headerField.getName(), val), severity);
 			val = "";
 		}
 	}
 	
-	// Format SSN to add extra 0's, and make sure is numbers only and length equals 9
-	protected static void formatSSN() {
+	// Format SSN by getting last four digits
+	protected static void formatSSN() {		
 		boolean valid = true;
-		val = val.trim().replaceAll("-", "");
-		if (val.matches(REGEX_ONLY_NUMBERS)) {
-			if (val.length() != SSN_LENGTH && val.length() > 4 && val.length() < SSN_LENGTH) {
-				while (val.length() < SSN_LENGTH) {
-					val = "0" + val;
-				}
-			} else if (val.length() != SSN_LENGTH) {
-				valid = false;
-			}
-		} else {
+		val = val.replaceAll(REGEX_GET_ONLY_DIGITS,"");
+		if (val.length() < 4) {
 			valid = false;
+		} else if (val.length() > 4) {
+			val = SSN_PATTERN + val.substring(val.length() - 4);
+		} else {
+			val = SSN_PATTERN + val;
 		}
 		
 		if (!valid) {
 			val = "";
-			fileResults.addUploadError(false, row, columnNum, ErrorMessages.getNotCorrectFormatErr("SSN"),
+			fileResults.addUploadError(false, row.getRowNum() + 1, columnNum, 
+					ErrorMessages.getInCorrectFormatErr("Social Security Number"),
 					FileUploadEnums.Error.CRITICAL.toString());
-		}
-	}
-	
-	// Returns formatted SSN value(last four digits)
-	protected static void getLastFourSSN() {
-		if (val.length() >= 4) {
-			val = val.trim().substring(val.length() - 4);
 		}
 	}
 }
