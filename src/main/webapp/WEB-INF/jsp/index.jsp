@@ -1,7 +1,6 @@
 <%@page import="main.java.util.FileUploadEnums, main.java.web.Application" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 
 <head>
@@ -24,6 +23,22 @@
             <input type="radio" id="compliance-type" name="uploadType" value="<%=FileUploadEnums.UploadType.COMPLIANCE%>" />
             <label for="compliance-type">Compliance</label>
 	    </fieldset>
+	    <div id="census-fields">
+	    	<fieldset>
+		        <legend>Is this your final census file for the year?</legend>
+	            <input type="radio" id="final-census-y" name="finalCensus" value="Y" />
+	            <label for="final-census-y">Yes</label>
+	            <input type="radio" id="final-census-n" name="finalCensus" value="N" checked />
+	            <label for="final-census-n">No</label>
+		    </fieldset>
+		    <fieldset>
+		        <legend>Is this your takeover file?</legend>
+	            <input type="radio" id="takeover-file-y" name="takeoverFile" value="Y" />
+	            <label for="takeover-file-y">Yes</label>
+	            <input type="radio" id="takeover-file-n" name="takeoverFile" value="N" checked />
+	            <label for="takeover-file-n">No</label>
+		    </fieldset>
+		</div>
 	    <legend>Select a File</legend>
 	    <input name="file-name" id="file-name" value="" type="text" style="width: 400px; padding: 0px 8px;">
 	    <input name="file" id="file" type="file" class="hide" accept=".xls,.xlsx,.txt,.csv"></input>
@@ -68,11 +83,7 @@
 <script>
 $("#browse-btn").on('click',function(){
 	let uploadTypeSelected = $("[name='uploadType']:checked").val();
-	if (uploadTypeSelected == "CONTRIBUTION") {
-		$("#contrib-src-reminder-modal").modal("show");
-	} else {
-		$('#file').click();
-	}
+	uploadTypeSelected == "CONTRIBUTION" ? $("#contrib-src-reminder-modal").modal("show") : $('#file').click();
 });
 
 $("#ok-btn, #close-btn").on('click',function(){
@@ -87,5 +98,9 @@ $('input[type=file]').change(function (e) {
 
 $("#upload-btn").on('click',function(){
 	$('#loader').show();
+});
+
+$('[name=uploadType]').change(function () {
+	$(this).val() == 'CENSUS' ? $("#census-fields").show() : $("#census-fields").hide();
 });
 </script>

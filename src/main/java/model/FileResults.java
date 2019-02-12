@@ -24,6 +24,9 @@ public class FileResults {
 	private String fileSeverity;
 	private String timeTaken;
 	private boolean canSubmitFile = true;
+	private String finalCensus;
+	private String takeoverFile;
+	private ArrayList<String> participantSSNList = new ArrayList<String>();
 
 	public String getFileName() {
 		return fileName;
@@ -165,5 +168,29 @@ public class FileResults {
 		ArrayList<UploadError> uploadErrorList = this.getUploadErrorList();
 		uploadErrorList.add(uploadError);
 		this.setUploadErrorList(uploadErrorList);
+	}
+
+	public String getFinalCensus() {
+		return finalCensus;
+	}
+
+	public void setFinalCensus(String finalCensus) {
+		this.finalCensus = finalCensus;
+	}
+
+	public String getTakeoverFile() {
+		return takeoverFile;
+	}
+
+	public void setTakeoverFile(String takeoverFile) {
+		this.takeoverFile = takeoverFile;
+	}
+
+	public ArrayList<String> getParticipantSSNList() {
+		return participantSSNList;
+	}
+
+	public void setParticipantSSNList(ArrayList<String> participantSSNList) {
+		this.participantSSNList = participantSSNList;
 	}
 }

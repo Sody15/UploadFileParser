@@ -90,6 +90,7 @@
             </tbody>
         </table>
         <h3>File Errors</h3>
+
         <table id="file-upload-error-table" class="display nowrap" style="width:100%">
             <thead>
                 <tr>
@@ -102,13 +103,7 @@
             <tbody>
                 <c:forEach var="entry" items="${fileResults.uploadErrorList}" varStatus="loop">
                     <tr>
-                        <td>
-                            <c:choose>
-                                <c:when test="${entry.rowNum != '*'}">
-                                    <!-- <span class="file-error-row-num">${entry.rowNum}</span> -->${entry.rowNum}</c:when>
-                                <c:otherwise>${entry.rowNum}</c:otherwise>
-                            </c:choose>
-                        </td>
+                        <td>${entry.rowNum}</td>
                         <td>${entry.excelColumnNum}</td>
                         <td>${entry.errorMsg}</td>
                         <td>

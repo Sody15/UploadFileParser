@@ -137,3 +137,11 @@ legend {
 #file-upload-data-table_filter input {
     height: 30px!important;
 }
+
+#census-fields {
+    display: none;
+}
+
+table.dataTable.nowrap th, table.dataTable.nowrap td {
+    white-space: normal!important;
+}

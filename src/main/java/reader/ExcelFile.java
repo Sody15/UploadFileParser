@@ -1,6 +1,5 @@
 package main.java.reader;
 
-import java.text.DateFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
@@ -35,7 +34,7 @@ public class ExcelFile {
 	final static int CELL_TYPE_STRING = 1;
 	final static int CELL_TYPE_DOUBLE = 0;
 
-	final static DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+	final static SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd/yyyy");
 	
 	public static Map<Integer, String> excelColMap = createExcelColMap();
 
@@ -100,13 +99,7 @@ public class ExcelFile {
 					// Data
 					else if (rowNum > fileResults.getHeaderRowNum() && row != null && !isRowEmpty(row)) {
 						JSONObject jsonObj = null;
-						if (FileUploadEnums.UploadType.CONTRIBUTION.toString().equalsIgnoreCase(fileResults.getUploadType())) {
-							jsonObj = getContributionDataRowValues(row, headerMap, fileResults);
-						} else if (FileUploadEnums.UploadType.CENSUS.toString().equalsIgnoreCase(fileResults.getUploadType())) {
-							jsonObj = getCensusDataRowValues(row, headerMap, fileResults);
-						} else {
-							jsonObj = getComplianceDataRowValues(row, headerMap, fileResults);
-						}
+						jsonObj = getDataRowValues(row, headerMap, fileResults);
 						if (jsonObj != null) {
 							fileResults.addToJsonDataArray(jsonObj);
 						}
@@ -188,7 +181,7 @@ public class ExcelFile {
 		return headerMap;
 	}
 	
-	private static JSONObject getContributionDataRowValues(Row row, HashMap<Integer, HeaderField> headerMap, FileResults fileResults) {
+	private static JSONObject getDataRowValues(Row row, HashMap<Integer, HeaderField> headerMap, FileResults fileResults) {
 		// Get Row Number
 		int rowNum = row.getRowNum() + 1;
 		
@@ -196,7 +189,6 @@ public class ExcelFile {
 		rowObj.put("Row #", rowNum);
 
 		String headerName = "";
-		ContributionsParser contributionsParser = new ContributionsParser();
 		for (Integer columnNum : headerMap.keySet()) {
 			HeaderField headerField = headerMap.get(columnNum);
 			headerName = headerField.getName();
@@ -217,8 +209,10 @@ public class ExcelFile {
 						} 
 						// Date
 						else if (FileUploadEnums.HeaderType.DATE.toString().equalsIgnoreCase(type)) {
-							if (cell.getDateCellValue() != null) {
-								cellValue = df.format(cell.getDateCellValue());
+							if (cell.getCellType() == CELL_TYPE_STRING) {
+								cellValue = dateFormatter.format(dateFormatter.parse(cell.getStringCellValue()));
+							} else if (cell.getDateCellValue() != null) {
+								cellValue = dateFormatter.format(cell.getDateCellValue());
 							}
 						} 
 						// Currency
@@ -235,8 +229,16 @@ public class ExcelFile {
 						}
 						
 						// Parse Field
-						contributionsParser = new ContributionsParser(headerField, cellValue, fileResults, row, columnNum, rowObj);
-						contributionsParser.parseField();
+						if (FileUploadEnums.UploadType.CONTRIBUTION.toString().equalsIgnoreCase(fileResults.getUploadType())) {
+							ContributionsParser contributionsParser = new ContributionsParser(headerField, cellValue, fileResults, row, columnNum, rowObj);
+							contributionsParser.parseField();
+						} else if (FileUploadEnums.UploadType.CENSUS.toString().equalsIgnoreCase(fileResults.getUploadType())) {
+							CensusParser censusParser = new CensusParser(headerField, cellValue, fileResults, row, columnNum, rowObj);
+							censusParser.parseField();
+						} else {
+							CensusParser censusParser = new CensusParser(headerField, cellValue, fileResults, row, columnNum, rowObj);
+							censusParser.parseField();
+						}
 					}
 					else {
 						rowObj.put(headerName, "");
@@ -251,177 +253,9 @@ public class ExcelFile {
 			}
 			catch (Exception ex) {
 				ex.printStackTrace();
-				if (ex instanceof IllegalStateException || ex instanceof NumberFormatException 
-						|| ex instanceof NullPointerException) {
-					fileResults.addUploadError(false, row.getRowNum() + 1, columnNum,
-							ErrorMessages.GENERIC,
-							FileUploadEnums.Error.CRITICAL.toString());
-				}
-				if (hasMapping) {
-					rowObj.put(headerName, "");
-				}
-			}
-		}
-
-		return rowObj;
-	}
-
-	private static JSONObject getCensusDataRowValues(Row row, HashMap<Integer, HeaderField> headerMap, FileResults fileResults) {
-		// Get Row Number
-		int rowNum = row.getRowNum() + 1;
-		
-		JSONObject rowObj = new JSONObject();
-		rowObj.put("Row #", rowNum);
-
-		String headerName = "";
-		CensusParser censusParser = new CensusParser();
-		for (Integer columnNum : headerMap.keySet()) {
-			HeaderField headerField = headerMap.get(columnNum);
-			headerName = headerField.getName();
-			boolean hasMapping = !ErrorMessages.NO_MAPPING.equalsIgnoreCase(headerName);
-			String type = null;
-			Cell cell = null;
-			try {
-				rowNum = row.getRowNum() + 1;
-				cell = row.getCell(columnNum - 1);
-				type = headerField.getType();
-				
-				// Cell is not Empty
-				if (hasMapping) {
-					if (cell != null) {
-						String cellValue = "";
-						// String
-						if (cell.getCellType() == CELL_TYPE_STRING
-								&& FileUploadEnums.HeaderType.STRING.toString().equalsIgnoreCase(type)) {
-							cellValue = cell.getStringCellValue().trim().replaceAll("'", "");
-						} 
-						// Date
-						else if (FileUploadEnums.HeaderType.DATE.toString().equalsIgnoreCase(type)) {
-							if (cell.getDateCellValue() != null) {
-								DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
-								cellValue = df.format(cell.getDateCellValue());
-							}
-						} 
-						// Currency
-						else if (cell.getCellType() == CELL_TYPE_DOUBLE
-								&& FileUploadEnums.HeaderType.CURRENCY.toString().equalsIgnoreCase(type)) {
-							fileResults.addToFileTotalAmt(cell.getNumericCellValue());
-							cellValue = convertToCurrency(cell.getNumericCellValue());
-						}
-						else if (cell.getCellType() == CELL_TYPE_STRING) {
-							cellValue = cell.getStringCellValue().trim().replaceAll("'", "");
-						} 
-						else if (cell.getCellType() == CELL_TYPE_DOUBLE) {
-							cellValue = Integer.toString((int) cell.getNumericCellValue());
-						}
-						
-						// Parse Field
-						censusParser = new CensusParser(headerField, cellValue, fileResults, row, columnNum, rowObj);
-						censusParser.parseField();
-					}
-					else {
-						rowObj.put(headerName, "");
-						// If required field
-						if (headerField.isRequired()) {
-							fileResults.addUploadError(false, row.getRowNum() + 1, columnNum, 
-									ErrorMessages.getRequiredFieldErr(headerName),
-									FileUploadEnums.Error.CRITICAL.toString());
-						}
-					}
-				}			
-			}
-			catch (Exception ex) {
-				ex.printStackTrace();
-				// Invalid date
-				if (hasMapping && cell != null && FileUploadEnums.HeaderType.DATE.toString().equalsIgnoreCase(type)) {
-					String severity = headerField.isRequired() ? FileUploadEnums.Error.CRITICAL.toString() : FileUploadEnums.Error.WARNING.toString();
-					fileResults.addUploadError(false, row.getRowNum() + 1, columnNum,
-							ErrorMessages.getDateInvalidErr(headerName),
-							severity);
-				} else {
-					fileResults.addUploadError(false, row.getRowNum() + 1, columnNum,
+				fileResults.addUploadError(false, row.getRowNum() + 1, columnNum,
 						ErrorMessages.GENERIC,
 						FileUploadEnums.Error.CRITICAL.toString());
-				}
-				if (hasMapping) {
-					rowObj.put(headerName, "");
-				}
-			}
-		}
-
-		return rowObj;
-	}
-	
-	private static JSONObject getComplianceDataRowValues(Row row, HashMap<Integer, HeaderField> headerMap, FileResults fileResults) {
-		// Get Row Number
-		int rowNum = row.getRowNum() + 1;
-		
-		JSONObject rowObj = new JSONObject();
-		rowObj.put("Row #", rowNum);
-
-		String headerName = "";
-		CensusParser censusParser = new CensusParser();
-		for (Integer columnNum : headerMap.keySet()) {
-			HeaderField headerField = headerMap.get(columnNum);
-			headerName = headerField.getName();
-			boolean hasMapping = !ErrorMessages.NO_MAPPING.equalsIgnoreCase(headerName);
-			try {
-				rowNum = row.getRowNum() + 1;
-				Cell cell = row.getCell(columnNum - 1);
-				String type = headerField.getType();
-				
-				// Cell is not Empty
-				if (hasMapping) {
-					if (cell != null) {
-						String cellValue = "";
-						// String
-						if (cell.getCellType() == CELL_TYPE_STRING
-								&& FileUploadEnums.HeaderType.STRING.toString().equalsIgnoreCase(type)) {
-							cellValue = cell.getStringCellValue().trim().replaceAll("'", "");
-						} 
-						// Date
-						else if (FileUploadEnums.HeaderType.DATE.toString().equalsIgnoreCase(type)) {
-							if (cell.getDateCellValue() != null) {
-								DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
-								cellValue = df.format(cell.getDateCellValue());
-							}
-						} 
-						// Currency
-						else if (cell.getCellType() == CELL_TYPE_DOUBLE
-								&& FileUploadEnums.HeaderType.CURRENCY.toString().equalsIgnoreCase(type)) {
-							fileResults.addToFileTotalAmt(cell.getNumericCellValue());
-							cellValue = convertToCurrency(cell.getNumericCellValue());
-						}
-						else if (cell.getCellType() == CELL_TYPE_STRING) {
-							cellValue = cell.getStringCellValue().trim().replaceAll("'", "");
-						} 
-						else if (cell.getCellType() == CELL_TYPE_DOUBLE) {
-							cellValue = Integer.toString((int) cell.getNumericCellValue());
-						}
-						
-						// Parse Field
-						censusParser = new CensusParser(headerField, cellValue, fileResults, row, columnNum, rowObj);
-						censusParser.parseField();
-					}
-					else {
-						rowObj.put(headerName, "");
-						// If required field
-						if (headerField.isRequired()) {
-							fileResults.addUploadError(false, row.getRowNum() + 1, columnNum, 
-									ErrorMessages.getRequiredFieldErr(headerName),
-									FileUploadEnums.Error.CRITICAL.toString());
-						}
-					}
-				}			
-			}
-			catch (Exception ex) {
-				ex.printStackTrace();
-				if (ex instanceof IllegalStateException || ex instanceof NumberFormatException 
-						|| ex instanceof NullPointerException) {
-					fileResults.addUploadError(false, row.getRowNum() + 1, columnNum,
-							ErrorMessages.GENERIC,
-							FileUploadEnums.Error.CRITICAL.toString());
-				}
 				if (hasMapping) {
 					rowObj.put(headerName, "");
 				}

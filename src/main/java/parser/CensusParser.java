@@ -53,6 +53,8 @@ public class CensusParser extends ParseField {
 	}
 	
 	private static void parseZip() {
+		// Get only Digits
+		val = val.replaceAll(REGEX_GET_ONLY_DIGITS,"");
 		if (val.length() != 5 && val.length() != 9) {
 			if (val.length() < 5) {
 				if (val.length() >= 3) {

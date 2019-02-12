@@ -23,7 +23,7 @@ public class ParseField {
 	protected static JSONObject rowObj;
 	
 	protected final static String REGEX_ONLY_NUMBERS_ALLOWED = "[0-9]+";
-	private static String REGEX_GET_ONLY_DIGITS = "\\D+";
+	protected static String REGEX_GET_ONLY_DIGITS = "\\D+";
 	
 	private static String SSN_PATTERN = "***-**-";
 	protected final static int SSN_LENGTH = 9;
@@ -84,10 +84,24 @@ public class ParseField {
 		}
 	}
 	
-	// Format SSN by getting last four digits
-	protected static void formatSSN() {		
+	// Look for dups and format SSN by getting last four digits
+	protected static void formatSSN() {
+		
+		// Get only digits
 		boolean valid = true;
 		val = val.replaceAll(REGEX_GET_ONLY_DIGITS,"");
+		
+		// Look for duplicate SSN's
+		if (val.length() >= 4) {
+			if (fileResults.getParticipantSSNList().contains(val)) {
+				fileResults.addUploadError(false, row.getRowNum() + 1, columnNum, 
+						"Duplicate SSN found - " + val,
+						FileUploadEnums.Error.CRITICAL.toString());
+			}
+			fileResults.getParticipantSSNList().add(val);
+		}
+		
+		// Get last 4 digits
 		if (val.length() < 4) {
 			valid = false;
 		} else if (val.length() > 4) {

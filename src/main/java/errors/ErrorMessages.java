@@ -22,10 +22,14 @@ public class ErrorMessages {
 	
 	// Census Validation Errors
 	public static final String FULL_NAME_MAX_CHARACTER = "Combination of First and Last Name is limited to 30 characters.";
+	private static final String INVALID_FIELD = "VALUE is Invalid.";
+	public static final String STATUS_QDRO_BENEFICIARY_DECEASED = "Status of QDRO/Beneficiary/Deceased requires further action. "
+			+ "Contact EPAC Customer Service to address (see left sidebar for contact info).";
 	private static final String DATE_IS_INVALID = "Invalid Date- VALUE. Couldn't parse your field. Dates need to be in mm/dd/yyyy format.";
 	private static final String MAX_CHARACTER_LIMIT = "The KEY field is limited to VALUE characters."; 
 	private static final String PO_BOX = "VALUE is invalid. PO Box's are not allowed. It must be a street address.";
 	private static final String NO_SPECIAL_CHARACTERS = "VALUE is invalid. Special Characters are not allowed.";
+	public static final String TERMINATION_DATE_ONLY_APPLICABLE = "Termination Date is only applicable for the status Terminated & Retired.";
 	
 	public static String getRequiredHeaderErr(String val) {
 		return REQUIRED_HEADER.replace("VALUE", val);
@@ -56,5 +60,8 @@ public class ErrorMessages {
 	}
 	public static String getNoSpecialCharactersErr(String val) {
 		return NO_SPECIAL_CHARACTERS.replace("VALUE", val);
+	}
+	public static String getInvalidFieldErr(String val) {
+		return INVALID_FIELD.replace("VALUE", val);
 	}
 }

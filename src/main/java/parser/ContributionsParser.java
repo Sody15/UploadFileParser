@@ -22,7 +22,7 @@ public class ContributionsParser extends ParseField {
 		if (ObjectUtil.isNotNullOrEmpty(val)) {
 			if ("Contract Number".equals(headerName)) {
 				formatContractNum();
-			} else if ("Social Security Number".equals(headerName)) {
+			} else if ("Social Security Number".equals(headerName)) {				
 				formatSSN();
 			}
 		} else {

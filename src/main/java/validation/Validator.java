@@ -54,6 +54,9 @@ public class Validator {
 				    	censusValidator.maxCharacterLimit((JSONObject)jsonRowObj, headerName, (String)value, characterLimit);
 				    	censusValidator.poBoxCheck((JSONObject)jsonRowObj, headerName, (String)value);
 				    	censusValidator.noSpecialCharacters((JSONObject)jsonRowObj, headerName, (String)value);
+				    } else if ("Status".equals(headerName)) {
+				    	censusValidator.statusValidation((JSONObject)jsonRowObj, headerName, (String)value, 
+				    			fileResults.getTakeoverFile(), fileResults.getFinalCensus());
 				    }
 				}
 				

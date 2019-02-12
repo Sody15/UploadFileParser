@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
+import main.java.errors.UploadError;
 import main.java.model.FileResults;
 import main.java.reader.ExcelFile;
 import main.java.util.RegexMapper;
@@ -43,8 +44,12 @@ public class FileController {
 	
 	@RequestMapping(value="/upload-file", method = RequestMethod.POST)
     public String uploadFile(ModelMap model, @RequestParam("file") MultipartFile file, 
-    		@RequestParam String uploadType) {
+    		@RequestParam String uploadType, @RequestParam String finalCensus, 
+    		@RequestParam String takeoverFile) {
 		log.info("Inside uploadFile method");
+		
+		log.info("finalCensus = " + finalCensus);
+		log.info("takeoverFile = " + takeoverFile);
 		
 		// Start timer
 		StopWatch timer = new StopWatch();
@@ -54,6 +59,8 @@ public class FileController {
 		FileResults fileResults = new FileResults();
 		fileResults.setFileName(file.getOriginalFilename());
 		fileResults.setUploadType(uploadType);
+		fileResults.setFinalCensus(finalCensus);
+		fileResults.setTakeoverFile(takeoverFile);
 		
 		// Read File
 		excelFile.readExcel(file, fileResults, regexMapper);

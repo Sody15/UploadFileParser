@@ -92,6 +92,7 @@
       values: 
         - Terminated
         - T*
+        - Fired
     - name: Disabled
       values: 
         - Disabled
@@ -161,6 +162,7 @@
         - Salaried
         - Annual
         - Salary
+        - Salared
     - name: Commissioned employee
       values: 
         - Commissioned

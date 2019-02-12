@@ -19,7 +19,7 @@
 (?i)\bNon-resident\b|\bAlien\b
 (?i)\bContractor\b|\bLeased\b
 (?i)\bHourly\b
-(?i)\bSalaried\b|\bAnnual\b|\bSalary\b
+(?i)\bSalaried\b|\bAnnual\b|\bSalary\b|\bSalared\b
 (?i)\bCommissioned\b|\bPeriodic\b
 (?i)\bHCE\b|(?=.*\bHighly\b)(?=.*\bCompensated\b)(?=.*\bEmployee\b)
 (?i)\bKey\b|\bCritical\b
@@ -115,7 +115,7 @@
 (?i)(?=.*\bRoth\b)(?=.*\bRollovers\b)
 (?i)(?=.*\bHarbor\b)(?=.*\bMatch\b)|\bHarborMatch\b
 (?i)(?=.*\bHarbor\b)(?=.*\bNon\b)
-(?i)^Salary Deferral$|^SalaryDeferral$|^Salary Def$|^SalaryDef$
+(?i)^Salary Deferral$|^Salary Deferrals$|^SalaryDeferral$|^Salary Def$|^SalaryDef$
 (?i)(?=.*\bPre\b)(?=.*\bTax\b)(?=.*\b-\b)(?=.*\b403(b)(7)\b)|(?=.*\bPre\b)(?=.*\bTax\b)(?=.*\b403(b)(7)\b)|(?=.*\bPre\b)(?=.*\bTax\b)(?=.*\b403b7\b)|(?=.*\bPre-Tax\b)(?=.*\b403(b)(7)\b)|(?=.*\bPre-Tax\b)(?=.*\b403b7\b)|(?=.*\bSalary\b)(?=.*\bDeferrals\b)(?=.*\b403(b)(7)\b)|(?=.*\bSalary\b)(?=.*\bDeferrals\b)(?=.*\b403b7\b)
 (?i)\bX-Employer\b|(?=.*\bX\b)(?=.*\bEmployer\b)|(?=.*\bX\b)(?=.*\bER\b)
 (?i)\bFirst\b|\bFname\b|(?=.*\bFirst\b)(?=.*\bName\b)|(?=.*\b1st\b)(?=.*\bName\b)|(?=.*\bF\b)(?=.*\bName\b)|\bFirstName\b|(?=.*\bName\b)(?=.*\b1\b)|\bName1\b|\bAnnuitantFirstName\b|\bFirst_Name\b|\bFirstNameMiddleInitial\b|\bName_First\b|\bPTDFirst\b|\bInitial\b|\bInit\b|\bMiddle\b
@@ -139,7 +139,7 @@
 (?i)\bNon-resident\b|\bAlien\b
 (?i)\bContractor\b|\bLeased\b
 (?i)\bHourly\b
-(?i)\bSalaried\b|\bAnnual\b|\bSalary\b
+(?i)\bSalaried\b|\bAnnual\b|\bSalary\b|\bSalared\b
 (?i)\bCommissioned\b|\bPeriodic\b
 (?i)\bHCE\b|(?=.*\bHighly\b)(?=.*\bCompensated\b)(?=.*\bEmployee\b)
 (?i)\bKey\b|\bCritical\b
